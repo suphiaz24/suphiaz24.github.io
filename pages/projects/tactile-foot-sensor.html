@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tactile Foot Sensor · Suphia Zhang</title>
+  <meta name="description" content="A Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing for the Symbiote hexapod at Cornell Physical Intelligence.">
+  <meta name="theme-color" content="#ffffff">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../../assets/fonts/archivo-wdth-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script src="../../assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../../">SUPHIA ZHANG <span>· Mechanical</span></a>
+    <nav class="nav hang" aria-label="Primary">
+      <span class="beam" aria-hidden="true"></span>
+      <a class="sign" href="../../#projects" aria-current="page"><span class="cable" aria-hidden="true"></span><span class="plate">Projects</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="../../#side-projects"><span class="cable" aria-hidden="true"></span><span class="plate">Side<span class="xl"> projects</span></span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="../../#experience"><span class="cable" aria-hidden="true"></span><span class="plate">Experience</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="../../#writing"><span class="cable" aria-hidden="true"></span><span class="plate">Writing</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="../../#about"><span class="cable" aria-hidden="true"></span><span class="plate">About</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign sign-go" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf"><span class="cable" aria-hidden="true"></span><span class="plate">Resume</span><span class="tension" aria-hidden="true"></span></a>
+    </nav>
+    <div class="statics-ctl">
+      <button type="button" class="forces-btn" aria-pressed="false">Show forces</button>
+      <label class="load" hidden>Sign mass <input type="range" min="0.1" max="2" step="0.1" value="0.4"> <output>0.4 kg</output></label>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <p class="crumb"><a href="../../#projects">Projects</a> › <a href="../../?cat=sensors#projects">Sensors &amp; Electronics</a> › Tactile Foot Sensor</p>
+
+  <div class="product">
+    <aside class="side" aria-label="Catalog">
+      <h2>Projects</h2>
+      <nav>
+        <a href="tactile-foot-sensor.html" aria-current="page">Tactile Foot Sensor</a>
+        <a href="flapping-wing-vehicle.html">Flapping-Wing Vehicle</a>
+        <a href="beetleweight-combat-robot.html">Beetleweight Combat Robot</a>
+        <a href="hexapod-leg-linkages.html">Hexapod Leg Linkages</a>
+      </nav>
+      <h2>Category</h2>
+      <nav>
+        <a href="../../?cat=robotics#projects">Robotics &amp; Mechanisms</a>
+        <a href="../../?cat=sensors#projects">Sensors &amp; Electronics</a>
+        <a href="../../?cat=fabrication#projects">Fabrication</a>
+        <a href="../../?cat=aero#projects">Aero &amp; Fluids</a>
+      </nav>
+    </aside>
+
+    <article>
+      <header class="product-head">
+        <h1>Tactile Foot Sensor</h1>
+        <p class="sub"><span class="pn">CUPI-02</span> · For the Symbiote hexapod · Cornell University Physical Intelligence · Mechanical Design Team · Mar 2026 – present</p>
+      </header>
+
+      <div class="product-body">
+        <div class="lead">
+        <div class="desc">
+          <p>Symbiote is a bio-inspired multi-robot system that pairs an autonomous UAV quadcopter with a hexapod ground robot for coordinated terrain surveying. For the hexapod to walk on unstructured ground, each foot needs to feel what it is standing on.</p>
+          <p>I designed, built, and tested a Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing. Four pressure inputs feed an Arduino, and a Python script turns the stream into a live foot-pressure heatmap with the centre of pressure and an estimate of the foot’s pitch and roll.</p>
+          <p>The design was validated in MuJoCo simulation and with Arduino (C++) and Python scripts for real-time force visualization and terrain-adaptive feedback.</p>
+        </div>
+
+      <section class="specs" aria-labelledby="spec-h">
+        <h2 id="spec-h">Specifications</h2>
+        <div class="table-scroll">
+          <table class="spec labeled">
+            <thead><tr><th scope="col">Part no.</th><th scope="col">Description</th><th scope="col">Process</th><th scope="col">Material</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td class="pn">CUPI-02-A</td><td>Taxel-array sensing layer</td><td data-label="Process">Prototyping, wiring</td><td data-label="Material">Velostat, FSRs, load cells</td><td data-label="Status">Prototype</td></tr>
+              <tr><td class="pn">CUPI-02-B</td><td>Foot housing</td><td data-label="Process">3D printing</td><td data-label="Material">TPU</td><td data-label="Status">Built</td></tr>
+              <tr><td class="pn">CUPI-02-C</td><td>Firmware and telemetry</td><td data-label="Process">Arduino (C++)</td><td data-label="Material">—</td><td data-label="Status">Working</td></tr>
+              <tr><td class="pn">CUPI-02-D</td><td>Pressure heatmap and tilt estimate</td><td data-label="Process">Python, MuJoCo simulation</td><td data-label="Material">—</td><td data-label="Status">Working</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+        </div>
+        <div class="figs">
+          <figure class="fig">
+            <video controls muted playsinline preload="none" poster="../../assets/media/cupi-foot-sensor-prototype-poster.jpg">
+              <source src="../../assets/media/cupi-foot-sensor-prototype.mp4" type="video/mp4">
+            </video>
+            <figcaption><b>Fig. 1</b>Simulated sensor inputs driving the live pressure heatmap, centre of pressure, and pitch/roll plot.</figcaption>
+          </figure>
+          <figure class="fig callout-fig">
+            <div class="stage">
+              <img src="../../assets/media/cupi-foot-sensor-wiring.jpg" alt="Prototype wiring: a red Arduino-compatible board, breadboard, HX711 amplifier, two load cells, and force-sensitive resistors" loading="lazy" width="1200" height="1600">
+              <button type="button" class="pin" style="left:50.5%;top:21%" aria-expanded="false" aria-controls="pin-1" aria-label="Part 1: RedBoard">1</button>
+              <div class="pin-note" id="pin-1" hidden><b>RedBoard (Arduino-compatible)</b>Reads every sensor and streams the values over USB.</div>
+              <button type="button" class="pin" style="left:25.5%;top:45.5%" aria-expanded="false" aria-controls="pin-2" aria-label="Part 2: HX711 amplifier">2</button>
+              <div class="pin-note" id="pin-2" hidden><b>HX711 load-cell amplifier</b>Turns the load cells’ tiny bridge voltage into readable counts.</div>
+              <button type="button" class="pin" style="left:33%;top:58.5%" aria-expanded="false" aria-controls="pin-3" aria-label="Part 3: load cells">3</button>
+              <div class="pin-note" id="pin-3" hidden><b>Load cells</b>Measure the total normal force on the foot.</div>
+              <button type="button" class="pin" style="left:64.5%;top:80%" aria-expanded="false" aria-controls="pin-4" aria-label="Part 4: force-sensitive resistors">4</button>
+              <div class="pin-note" id="pin-4" hidden><b>Force-sensitive resistors</b>Pressure points that show where on the pad the load sits.</div>
+              <button type="button" class="pin" style="left:62%;top:47%" aria-expanded="false" aria-controls="pin-5" aria-label="Part 5: breadboard">5</button>
+              <div class="pin-note" id="pin-5" hidden><b>Breadboard</b>Temporary wiring while the circuit was being proven out.</div>
+            </div>
+            <figcaption><b>Fig. 2</b>First prototype wiring. Tap a number to see what each part does.</figcaption>
+            <ol class="legend">
+              <li>RedBoard (Arduino-compatible)</li>
+              <li>HX711 load-cell amplifier</li>
+              <li>Load cells</li>
+              <li>Force-sensitive resistors</li>
+              <li>Breadboard</li>
+            </ol>
+          </figure>
+          <figure class="fig">
+            <video controls muted playsinline preload="none" poster="../../assets/media/cupi-foot-sensor-demo-poster.jpg">
+              <source src="../../assets/media/cupi-foot-sensor-demo.mp4" type="video/mp4">
+            </video>
+            <figcaption><b>Fig. 3</b>Hardware test: the serial monitor streaming pitch, roll, pad compression, and raw FSR readings.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <nav class="next" aria-label="More projects">
+        <a href="../../#projects">← All projects</a>
+        <a href="flapping-wing-vehicle.html">Next: Flapping-Wing Vehicle →</a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="colophon" id="contact">
+  <div class="wrap">
+    <dl class="author">
+      <dt>Author</dt><dd>Suphia Zhang, B.S. Mechanical Engineering ’29, Minor in Aerospace Engineering</dd>
+      <dt>Affiliations</dt><dd>NHRL Combat Robotics · CUPI · Bio-Inspired Fluid Lab · ASME</dd>
+      <dt>Contact</dt><dd class="data"><a href="mailto:sz744@cornell.edu">sz744@cornell.edu</a> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359">LinkedIn</a></dd>
+    </dl>
+    <div class="order">
+      <a class="btn" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+        Download resume (PDF)
+      </a>
+      <p class="also">Also tailored for:
+        <a href="../../assets/SZhang_Resume_Manufacturing_Engineering.pdf">Manufacturing</a> ·
+        <a href="../../assets/SZhang_Resume_Testing_Engineering.pdf">Testing</a>
+      </p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

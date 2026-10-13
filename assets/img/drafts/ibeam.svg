@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 230" fill="none" stroke="#b4b4ae" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M60 40H200V58H138V162H200V180H60V162H122V58H60Z"/>
+  <path d="M44 40l-6 0M44 180l-6 0M60 196v8M200 196v8" stroke-width="1"/>
+  <path d="M230 40V180M222 40h16M222 180h16" stroke-width="1"/>
+  <path d="M230 40l-4 10h8zM230 180l-4 -10h8z" fill="#b4b4ae" stroke="none"/>
+  <path d="M60 205H200" stroke-width="1"/>
+  <path d="M60 205l10 -4v8zM200 205l-10 -4v8z" fill="#b4b4ae" stroke="none"/>
+  <path d="M30 110H226" stroke-dasharray="14 4 2 4" stroke-width="1"/>
+  <circle cx="130" cy="110" r="6" />
+  <path d="M130 104A6 6 0 0 1 136 110H130ZM130 116A6 6 0 0 1 124 110H130Z" fill="#b4b4ae"/>
+  <text x="262" y="114" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">h 140</text>
+  <text x="130" y="224" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">b 140</text>
+  <text x="34" y="102" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="start">N.A.</text>
+</svg>

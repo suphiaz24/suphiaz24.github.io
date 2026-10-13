@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 270" fill="none" stroke="#b4b4ae" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="70" y="80" width="160" height="140" rx="6"/>
+  <rect x="48" y="100" width="22" height="48" rx="4"/><rect x="230" y="100" width="22" height="48" rx="4"/>
+  <rect x="48" y="160" width="22" height="48" rx="4"/><rect x="230" y="160" width="22" height="48" rx="4"/>
+  <path d="M70 92L60 46H82L90 80M230 92L240 46H218L210 80"/>
+  <rect x="84" y="40" width="132" height="34" rx="8"/>
+  <path d="M96 40v34M114 40v34M132 40v34M150 40v34M168 40v34M186 40v34M204 40v34" stroke-width="1"/>
+  <path d="M52 57H248M150 26V236" stroke-dasharray="14 4 2 4" stroke-width="1"/>
+  <rect x="96" y="150" width="62" height="40" stroke-dasharray="4 4" stroke-width="1"/>
+  <rect x="170" y="110" width="40" height="28" stroke-dasharray="4 4" stroke-width="1"/>
+  <text x="127" y="175" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">LiPo</text>
+  <text x="190" y="129" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">ESC</text>
+  <text x="150" y="258" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">3 lb BEETLE Â· TOP</text>
+</svg>

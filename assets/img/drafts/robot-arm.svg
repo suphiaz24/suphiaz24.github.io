@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" fill="none" stroke="#b4b4ae" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M30 270H200" stroke-width="1.6"/>
+  <path d="M40 270l-10 12M60 270l-10 12M80 270l-10 12M100 270l-10 12M120 270l-10 12M140 270l-10 12M160 270l-10 12M180 270l-10 12M200 270l-10 12" stroke-width="1"/>
+  <rect x="70" y="238" width="80" height="32"/>
+  <path d="M84 238L94 216H126L136 238"/>
+  <g transform="translate(110 205) rotate(-46.5)"><rect x="-15" y="-15" width="161" height="30" rx="15"/></g>
+  <g transform="translate(200 110) rotate(11.3)"><rect x="-11" y="-11" width="124" height="22" rx="11"/></g>
+  <circle cx="110" cy="205" r="9" />
+  <circle cx="110" cy="205" r="3" />
+  <circle cx="200" cy="110" r="8" />
+  <circle cx="200" cy="110" r="3" />
+  <circle cx="300" cy="130" r="6" />
+  <path d="M306 116V144M306 118L330 108L340 114M306 142L330 152L340 146"/>
+  <path d="M110 205H185" stroke-dasharray="14 4 2 4" stroke-width="1"/>
+  <path d="M160 205A50 50 0 0 0 144.4 168.7" stroke-width="1"/>
+  <path d="M200 110L238 70" stroke-dasharray="14 4 2 4" stroke-width="1"/>
+  <path d="M227.5 81A40 40 0 0 1 239.2 117.8" stroke-width="1"/>
+  <text x="172" y="192" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">Î¸1</text>
+  <text x="252" y="98" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">Î¸2</text>
+  <text x="330" y="205" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="end">L1 130 Â· L2 100</text>
+  <text x="330" y="222" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="end">2-DOF ARM</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 170" fill="none" stroke="#b4b4ae" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M34 36V124M246 36V124" stroke-width="2"/>
+  <path d="M34 44l-10 10M34 64l-10 10M34 84l-10 10M34 104l-10 10" stroke-width="1"/>
+  <path d="M40 80 L45 50 L55 110 L65 50 L75 110 L85 50 L95 110 L105 50 L115 110 L125 50 L135 110 L145 50 L155 110 L165 50 L175 110 L185 50 L195 110 L205 50 L215 110 L225 50 L235 110 L240 80"/>
+  <path d="M300 80H256M256 80l10 -5v10z"/>
+  <text x="292" y="70" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">F</text>
+  <path d="M40 140H240M40 132v16M240 132v16" stroke-width="1"/>
+  <path d="M40 140l10 -4v8zM240 140l-10 -4v8z" fill="#b4b4ae" stroke="none"/>
+  <text x="140" y="162" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">L0 = 48 mm Â· k = 2.1 N/mm</text>
+</svg>

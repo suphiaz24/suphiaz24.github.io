@@ -5,4 +5,15 @@ node_modules/
 .vscode/
 .idea/
 *.log
+*.MOV
+*.mov
+# Raw source media; the web versions live in assets/media/
+assets/*.mp4
+assets/IMG_*
 .claude/settings.local.json
+
+# Impeccable working files (decision pages, mocks, review captures)
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/hook.cache.json
