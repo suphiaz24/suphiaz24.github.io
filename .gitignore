@@ -17,3 +17,7 @@ assets/IMG_*
 .impeccable/mocks/
 .impeccable/review/
 .impeccable/hook.cache.json
+
+# Resume-button background video. The current file is an unlicensed Shutterstock preview used only
+# for local previews; remove this line once it is replaced with a licensed or free clip.
+assets/media/resume-bg.mp4

@@ -6,5 +6,5 @@
   <text x="292" y="70" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">F</text>
   <path d="M40 140H240M40 132v16M240 132v16" stroke-width="1"/>
   <path d="M40 140l10 -4v8zM240 140l-10 -4v8z" fill="#b4b4ae" stroke="none"/>
-  <text x="140" y="162" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">L0 = 48 mm Â· k = 2.1 N/mm</text>
+  <text x="140" y="162" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">L0 = 48 mm · k = 2.1 N/mm</text>
 </svg>

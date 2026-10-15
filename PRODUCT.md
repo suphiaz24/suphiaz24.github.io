@@ -61,10 +61,10 @@ Resumes (source of truth for facts; Oct 2026 versions):
 - `assets/SZhang_Resume_Manufacturing_Engineering.pdf`
 - `assets/SZhang_Resume_Testing_Engineering.pdf`
 
-Facts from the resume: Cornell University, B.S. Mechanical Engineering with a Minor in Aerospace Engineering, Aug 2025 – May 2029; based in Ithaca, NY; email sz744@cornell.edu; LinkedIn linkedin.com/in/suphia-zhang-46770b359. Awards: Meinig Family Cornell National Scholar, McMullen Scholarship Recipient, McMullen Dean's Scholar (all 2025–26), National First-Generation Recognition Program. Projects and roles:
-- **NHRL Combat Robotics**: Mechanical Design Lead (Nov 2025 – present), 3 lb beetleweight, OnShape CAD in 6 weeks, 1 oz under the weight limit, machined parts and carbon fiber layups, survived 4 competition matches.
-- **Cornell University Physical Intelligence (CUPI)**: Mechanical Design Team Member (Mar 2026 – present), hexapod leg linkages and a Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing for Symbiote (UAV + hexapod), Fusion 360, MuJoCo, Arduino/Python.
-- **Bio-Inspired Fluid Lab**: Undergraduate Researcher with Dr. Sunghwan Jung (Sep 2026 – present), flapping-wing aerial-aquatic vehicle modeled on MIT's FAAV, OnShape simulation assembly.
+Facts from the resume: Cornell University, B.S. Mechanical Engineering with a Minor in Aerospace Engineering, Aug 2025 – May 2029; based in Ithaca, NY; email zhangsiya24@gmail.com; LinkedIn linkedin.com/in/suphia-zhang-46770b359. Awards: Meinig Family Cornell National Scholar, McMullen Scholarship Recipient, McMullen Dean's Scholar (all 2025–26), National First-Generation Recognition Program. Projects and roles:
+- **Team Bootleg (NHRL), a side project with a friend**: Mechanical Design Lead on the robot Nibble Newton (Nov 2025 – present), 3 lb beetleweight, OnShape CAD in 6 weeks, 1 oz under the weight limit, machined parts and carbon fiber layups, survived 4 competition matches.
+- **Cornell University Physical Intelligence (CUPI)**: Mechanical Design Team Member (Mar 2026 – present), hexapod leg linkages (Fusion 360 and Onshape) and a Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing for Symbiote (UAV + hexapod), Fusion 360, MuJoCo, Arduino/Python.
+- **Bio-Inspired Fluid Lab**: Undergraduate Researcher with Dr. Sunghwan Jung (Sep 2026 – present), flapping-wing aerial-aquatic vehicle modeled on MIT's FAAV, Fusion 360 simulation assembly and motion study.
 - **ASME Cornell**: Corporate Committee Member (Dec 2025 – present).
 - **Double Dragon Restaurant**: Line Cook / Cashier / Staff (2015 – Aug 2026), including repairing commercial kitchen equipment.
 

@@ -37,120 +37,6 @@
     if (initial && group.querySelector('[data-filter="' + initial + '"]')) apply(initial);
   })();
 
-  /* ---------- Hanging nav: each sign is a damped pendulum on a V cable ---------- */
-  (function () {
-    var nav = document.querySelector('.nav.hang');
-    if (!nav) return;
-    var G = 9.81;
-    var PX_PER_M = 100;          // 1 m of pendulum per 100 px of sign
-    var mass = 0.4;              // kg, set by the load slider
-    var signs = Array.prototype.map.call(nav.querySelectorAll('.sign'), function (el) {
-      return { el: el, tension: el.querySelector('.tension'), theta: 0, omega: 0 };
-    });
-
-    function geometry(s) {
-      var r = s.el.getBoundingClientRect();
-      var plate = s.el.querySelector('.plate').getBoundingClientRect();
-      var cable = s.el.querySelector('.cable').getBoundingClientRect();
-      // Pivot at the hook, centre of mass at the plate centre.
-      s.L = Math.max(0.2, (plate.top + plate.height / 2 - r.top - 7) / PX_PER_M);
-      // Half-angle of the V cable: hook to plate corner (cable drawn from 50% to 10%/90% of width).
-      s.alpha = Math.atan((0.4 * cable.width) / Math.max(1, cable.height));
-    }
-    signs.forEach(geometry);
-    window.addEventListener('resize', function () { signs.forEach(geometry); });
-
-    function damping() { return 0.9 / Math.sqrt(mass / 0.4); } // heavier signs ring longer
-
-    var forcesOn = false;
-    function writeTension(s) {
-      // Cable tension from radial balance: 2T cos(alpha) = m (g cos(theta) + L omega^2)
-      var T = mass * (G * Math.cos(s.theta) + s.L * s.omega * s.omega) / (2 * Math.cos(s.alpha));
-      s.tension.textContent = 'T ' + T.toFixed(2) + ' N ×2';
-    }
-
-    var running = false, last = 0;
-    function step(now) {
-      var dt = Math.min(0.033, (now - last) / 1000 || 0.016);
-      last = now;
-      var active = false;
-      signs.forEach(function (s) {
-        var sub = 4, h = dt / sub;
-        for (var i = 0; i < sub; i++) {
-          var acc = -(G / s.L) * Math.sin(s.theta) - damping() * s.omega;
-          s.omega += acc * h;
-          s.theta += s.omega * h;
-        }
-        s.el.style.transform = 'rotate(' + s.theta.toFixed(4) + 'rad)';
-        if (forcesOn) writeTension(s);
-        if (Math.abs(s.theta) > 0.0008 || Math.abs(s.omega) > 0.002) active = true;
-      });
-      if (active) requestAnimationFrame(step);
-      else {
-        running = false;
-        signs.forEach(function (s) { s.theta = 0; s.omega = 0; s.el.style.transform = ''; if (forcesOn) writeTension(s); });
-      }
-    }
-    function wake() {
-      if (reduceMotion || running) return;
-      running = true;
-      last = performance.now();
-      requestAnimationFrame(step);
-    }
-    function push(s, impulse) {
-      s.omega += impulse * (0.4 / mass); // lighter signs take more swing from the same push
-      wake();
-    }
-
-    // A cursor sweeping through the cables pushes the signs it crosses.
-    var lastX = null, lastT = 0;
-    nav.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      var now = performance.now();
-      if (lastX !== null) {
-        var vx = (e.clientX - lastX) / Math.max(1, now - lastT); // px per ms
-        signs.forEach(function (s) {
-          var r = s.el.getBoundingClientRect();
-          if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) {
-            push(s, Math.max(-2.5, Math.min(2.5, vx * 1.6)));
-          }
-        });
-      }
-      lastX = e.clientX; lastT = now;
-    });
-    nav.addEventListener('pointerleave', function () { lastX = null; });
-    signs.forEach(function (s, i) {
-      s.el.addEventListener('pointerdown', function () { push(s, i % 2 ? 1.2 : -1.2); });
-      s.el.addEventListener('focus', function () { push(s, 0.6); });
-    });
-
-    // Signs swing in on load, as if just hung.
-    if (!reduceMotion) {
-      signs.forEach(function (s, i) { s.theta = (i % 2 ? 1 : -1) * (0.10 + 0.03 * i); });
-      wake();
-    }
-
-    // Forces readout and load slider.
-    var btn = document.querySelector('.forces-btn');
-    var load = document.querySelector('.statics-ctl .load');
-    if (btn && load) {
-      var range = load.querySelector('input');
-      var out = load.querySelector('output');
-      btn.addEventListener('click', function () {
-        forcesOn = btn.getAttribute('aria-pressed') !== 'true';
-        btn.setAttribute('aria-pressed', String(forcesOn));
-        btn.textContent = forcesOn ? 'Hide forces' : 'Show forces';
-        load.hidden = !forcesOn;
-        nav.classList.toggle('forces-on', forcesOn);
-        signs.forEach(writeTension);
-      });
-      range.addEventListener('input', function () {
-        mass = parseFloat(range.value);
-        out.textContent = mass.toFixed(1) + ' kg';
-        signs.forEach(function (s, i) { if (forcesOn) writeTension(s); push(s, (i % 2 ? 1 : -1) * 0.25); });
-      });
-    }
-  })();
 
   /* ---------- Drafting-line reveal on scroll ---------- */
   (function () {
@@ -292,4 +178,401 @@
     if (document.readyState === 'complete') relay();
     else window.addEventListener('load', relay);
   })();
+
+  /* ---------- Card tracks: prev/next arrows when the row overflows ---------- */
+  document.querySelectorAll('.cards.track').forEach(function (track) {
+    var head = track.parentNode.querySelector('.section-head');
+    if (!head) return;
+    var nav = document.createElement('div');
+    nav.className = 'track-nav';
+    nav.hidden = true;
+    nav.innerHTML = '<button type="button" aria-label="Scroll left" aria-controls="' + track.id + '">←</button>' +
+                    '<button type="button" aria-label="Scroll right" aria-controls="' + track.id + '">→</button>';
+    head.appendChild(nav);
+    var prev = nav.children[0], next = nav.children[1];
+
+    function step() {
+      var li = track.querySelector('li:not([hidden])');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return li ? li.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      nav.hidden = max <= 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: reduceMotion ? 'auto' : 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    // The category filter changes how many cards are showing.
+    document.querySelectorAll('.filter button').forEach(function (b) { b.addEventListener('click', function () { track.scrollLeft = 0; update(); }); });
+    update();
+  });
+
+  /* ---------- Mechanical scrollbars: rack & pinion (projects), vernier caliper (side projects) ---------- */
+  (function () {
+    var SVG = 'http://www.w3.org/2000/svg';
+    function gearSVG(size, teeth) {
+      var c = size / 2, tip = c - 1, root = tip - 3.6, pts = [];
+      for (var i = 0; i < teeth; i++) {
+        var a = i * 2 * Math.PI / teeth, p = 2 * Math.PI / teeth;
+        [[0, root], [0.18, tip], [0.42, tip], [0.6, root]].forEach(function (q) {
+          var t = a + q[0] * p;
+          pts.push((c + q[1] * Math.cos(t)).toFixed(2) + ' ' + (c + q[1] * Math.sin(t)).toFixed(2));
+        });
+      }
+      var holes = '';
+      for (var h = 0; h < 4; h++) {
+        var ha = h * Math.PI / 2 + Math.PI / 4;
+        holes += '<circle cx="' + (c + (c - 16) * Math.cos(ha)).toFixed(2) + '" cy="' + (c + (c - 16) * Math.sin(ha)).toFixed(2) + '" r="2"/>';
+      }
+      return '<svg xmlns="' + SVG + '" viewBox="0 0 ' + size + ' ' + size + '" width="' + size + '" height="' + size + '" fill="#fff" stroke="#1a1a1a" stroke-width="1.3" stroke-linejoin="round">' +
+        '<path d="M' + pts.join(' L') + ' Z"/><circle cx="' + c + '" cy="' + c + '" r="' + (c - 10) + '" fill="none" stroke-dasharray="2 3" stroke-width="1"/>' + holes +
+        '<circle cx="' + c + '" cy="' + c + '" r="4.5" fill="#3a3a38"/></svg>';
+    }
+
+    document.querySelectorAll('.cards.track').forEach(function (track) {
+      var kind = track.classList.contains('side-cards') ? 'caliper' : 'rack';
+      var bar = document.createElement('div');
+      bar.className = 'scroller ' + kind;
+      bar.setAttribute('aria-hidden', 'true'); // the arrow buttons are the keyboard path
+      bar.hidden = true;
+      var thumb;
+      if (kind === 'rack') {
+        bar.innerHTML = '<div class="rack-bar"></div><div class="pinion">' + gearSVG(52, 18) + '</div>';
+        thumb = bar.querySelector('.pinion');
+      } else {
+        bar.innerHTML = '<div class="beam"><div class="fixed-jaw"></div><div class="scale"></div></div>' +
+          '<div class="slider"><div class="plate"><span class="screw"></span><output class="reading">0.0 mm</output></div><div class="jaw"></div></div>';
+        thumb = bar.querySelector('.slider');
+      }
+      track.insertAdjacentElement('afterend', bar);
+      var gear = bar.querySelector('svg');
+      var reading = bar.querySelector('.reading');
+      var scale = bar.querySelector('.scale');
+
+      function travel() { return Math.max(0, bar.clientWidth - thumb.offsetWidth); }
+      function numbers() {
+        if (!scale) return;
+        scale.textContent = '';
+        for (var x = 60, n = 1; x < bar.clientWidth - 10; x += 60, n++) {
+          var s = document.createElement('span'); s.style.left = x + 'px'; s.textContent = n * 10; scale.appendChild(s);
+        }
+      }
+      function render() {
+        var max = track.scrollWidth - track.clientWidth;
+        bar.hidden = max <= 2;
+        if (bar.hidden) return;
+        if (scale && +scale.dataset.w !== bar.clientWidth) { numbers(); scale.dataset.w = bar.clientWidth; }
+        var r = Math.min(1, Math.max(0, track.scrollLeft / max)), x = r * travel();
+        if (gear) {
+          // Rolling without slipping: angle = distance / pitch radius.
+          thumb.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+          gear.style.transform = 'rotate(' + (x / 23 * 180 / Math.PI).toFixed(1) + 'deg)';
+        } else {
+          thumb.style.transform = 'translateX(' + x.toFixed(1) + 'px)';
+          reading.textContent = (x / 6).toFixed(1) + ' mm'; // scale: 6 px per mm
+        }
+      }
+
+      var dragging = false, grab = 0;
+      function seek(clientX) {
+        var rect = bar.getBoundingClientRect();
+        var x = Math.min(travel(), Math.max(0, clientX - rect.left - grab));
+        track.scrollLeft = (travel() ? x / travel() : 0) * (track.scrollWidth - track.clientWidth);
+      }
+      bar.addEventListener('pointerdown', function (e) {
+        dragging = true;
+        var t = thumb.getBoundingClientRect();
+        grab = (e.clientX >= t.left && e.clientX <= t.right) ? e.clientX - t.left : thumb.offsetWidth / 2;
+        track.style.scrollSnapType = 'none';
+        bar.classList.add('dragging');
+        bar.setPointerCapture(e.pointerId);
+        seek(e.clientX);
+      });
+      bar.addEventListener('pointermove', function (e) { if (dragging) seek(e.clientX); });
+      function release() {
+        if (!dragging) return;
+        dragging = false;
+        bar.classList.remove('dragging');
+        track.style.scrollSnapType = '';
+      }
+      bar.addEventListener('pointerup', release);
+      bar.addEventListener('pointercancel', release);
+
+      var ticking = false;
+      track.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; render(); }); }
+      }, { passive: true });
+      window.addEventListener('resize', render);
+      document.querySelectorAll('.filter button').forEach(function (b) { b.addEventListener('click', function () { requestAnimationFrame(render); }); });
+      numbers();
+      render();
+    });
+  })();
+
+  /* ---------- Project sidebar: section dropdowns + current-section highlight ---------- */
+  (function () {
+    var toc = document.querySelector('.toc');
+    if (!toc) return;
+    toc.querySelectorAll('.toc-tog').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var open = b.getAttribute('aria-expanded') === 'true';
+        b.setAttribute('aria-expanded', String(!open));
+        document.getElementById(b.getAttribute('aria-controls')).hidden = open;
+      });
+    });
+
+    // Links in the current project's list point at "#id" on this page.
+    var links = Array.prototype.filter.call(toc.querySelectorAll('ul a'), function (a) {
+      return a.getAttribute('href').charAt(0) === '#';
+    });
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    if (!targets.length || targets.some(function (t) { return !t; })) return;
+
+    function mark() {
+      ticking = false;
+      // Sections sit in two columns on desktop, so pick the one whose top is closest above the line.
+      var line = 140, idx = 0, best = -Infinity;
+      targets.forEach(function (t, i) {
+        var top = t.getBoundingClientRect().top;
+        if (top <= line && top > best + 1) { best = top; idx = i; }
+      });
+      // At the very bottom, the last section is the current one.
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) idx = targets.length - 1;
+      links.forEach(function (a, i) { a.classList.toggle('here', i === idx); });
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(mark); }
+    }, { passive: true });
+    mark();
+  })();
 })();
+
+// Resume dropdown: close on outside click or Escape.
+document.addEventListener('click', function (e) {
+  document.querySelectorAll('.resume-menu[open], .skill-menu[open]').forEach(function (m) { if (!m.contains(e.target)) m.open = false; });
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  document.querySelectorAll('.resume-menu[open], .skill-menu[open]').forEach(function (m) { m.open = false; m.querySelector('summary').focus(); });
+});
+
+
+// Resume button video: show it once it can play; if the file is missing, keep the drawn jellyfish.
+document.querySelectorAll('.btn-video').forEach(function (v) {
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var src = v.querySelector('source');
+  if (src) src.addEventListener('error', function () { v.remove(); });
+  v.addEventListener('loadeddata', function () {
+    v.classList.add('ready');
+    if (!still) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  });
+});
+
+// Home page: the hanging sign for the section in view is marked current; nothing is marked on the intro.
+(function () {
+  var signs = Array.prototype.filter.call(document.querySelectorAll('.nav.hang .sign'), function (a) {
+    var h = a.getAttribute('href'); return h && h.charAt(0) === '#' && document.getElementById(h.slice(1));
+  });
+  if (!signs.length) return;
+  var sections = signs.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var line = window.innerHeight * 0.35, cur = -1;
+    sections.forEach(function (s, i) { if (s.getBoundingClientRect().top <= line) cur = i; });
+    // Past the last tracked section (e.g. into the footer) keep the last one only while it is still on screen.
+    if (cur >= 0 && sections[cur].getBoundingClientRect().bottom < 0) cur = -1;
+    signs.forEach(function (a, i) { if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(mark); } }, { passive: true });
+  window.addEventListener('resize', mark);
+  mark();
+})();
+
+// Masthead slims down once the page is scrolled (with a little hysteresis so it doesn't flicker).
+(function () {
+  var head = document.querySelector('.masthead');
+  if (!head) return;
+  var compact = false, ticking = false;
+  function check() {
+    ticking = false;
+    var y = window.scrollY;
+    var next = compact ? y > 24 : y > 80;
+    if (next === compact) return;
+    compact = next;
+    head.classList.toggle('compact', compact);
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(check); } }, { passive: true });
+  check();
+})();
+
+// On phones the masthead tucks away while scrolling down and comes back on any scroll up.
+(function () {
+  var head = document.querySelector('.masthead');
+  if (!head) return;
+  var phone = window.matchMedia('(max-width: 640px)');
+  var lastY = window.scrollY, tucked = false, ticking = false;
+  function set(t) { if (t !== tucked) { tucked = t; head.classList.toggle('tuck', t); } }
+  function check() {
+    ticking = false;
+    var y = Math.max(0, window.scrollY), dy = y - lastY;
+    if (!phone.matches || y < head.offsetHeight) { set(false); lastY = y; return; }
+    if (head.contains(document.activeElement) && document.activeElement !== document.body) { set(false); lastY = y; return; } // keep it visible while a nav link has focus
+    if (Math.abs(dy) < 6) return; // ignore jitter
+    set(dy > 0);
+    lastY = y;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(check); } }, { passive: true });
+  head.addEventListener('focusin', function () { set(false); });
+})();
+
+// Copy-email buttons: copy to clipboard, confirm for two seconds.
+document.querySelectorAll('.copy-email').forEach(function (b) {
+  var label = b.querySelector('span'), timer;
+  b.addEventListener('click', function () {
+    var text = b.getAttribute('data-copy');
+    function done(ok) {
+      label.textContent = ok ? 'copied ✓' : 'press Ctrl+C';
+      b.classList.toggle('done', ok);
+      b.setAttribute('aria-label', ok ? 'Email address copied' : 'Copy failed');
+      clearTimeout(timer);
+      timer = setTimeout(function () { label.textContent = 'copy'; b.classList.remove('done'); b.setAttribute('aria-label', 'Copy email address'); }, 2000);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(false); });
+    } else {
+      var t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select();
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      t.remove(); done(ok);
+    }
+  });
+});
+
+
+/* ---------- Drawing mode: sketch on the page; strokes stay pinned to the page as it scrolls ---------- */
+(function () {
+  var btn = document.querySelector('.draw-btn');
+  if (!btn) return;
+  var on = false, cv = null, ctx = null, bar = null, dpr = 1;
+  var tool = { color: '#1f2d5c', erase: false }, drawing = false, last = null, mid = null;
+  var COLORS = [['#1f2d5c', 'Navy'], ['#1b5e9b', 'Blue'], ['#5b3fa0', 'Purple'], ['#b3261e', 'Red']];
+
+  function pageSize() {
+    return { w: document.documentElement.scrollWidth, h: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight) };
+  }
+  function fit() {
+    var s = pageSize();
+    dpr = Math.min(window.devicePixelRatio || 1, 2, 16000 / s.h);
+    var w = Math.round(s.w * dpr), h = Math.round(s.h * dpr);
+    if (cv.width === w && cv.height === h) return;
+    var keep = null;
+    if (cv.width && cv.height) {
+      keep = document.createElement('canvas'); keep.width = cv.width; keep.height = cv.height;
+      keep.getContext('2d').drawImage(cv, 0, 0);
+    }
+    cv.width = w; cv.height = h;
+    cv.style.width = s.w + 'px'; cv.style.height = s.h + 'px';
+    if (keep) ctx.drawImage(keep, 0, 0, keep.width, keep.height, 0, 0, w, h);
+  }
+  function pos(e) { var r = cv.getBoundingClientRect(); return { x: (e.clientX - r.left) * dpr, y: (e.clientY - r.top) * dpr }; }
+
+  function build() {
+    cv = document.createElement('canvas');
+    cv.className = 'draw-layer';
+    cv.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cv);
+    ctx = cv.getContext('2d');
+
+    bar = document.createElement('div');
+    bar.className = 'draw-bar';
+    bar.setAttribute('role', 'toolbar');
+    bar.setAttribute('aria-label', 'Drawing tools');
+    bar.innerHTML = '<span class="draw-title">Drawing</span>' +
+      COLORS.map(function (c, i) {
+        return '<button type="button" class="swatch" style="--c:' + c[0] + '" aria-pressed="' + (i === 0) + '" aria-label="' + c[1] + ' pen" data-color="' + c[0] + '"></button>';
+      }).join('') +
+      '<button type="button" class="tool" data-tool="erase" aria-pressed="false">Eraser</button>' +
+      '<button type="button" class="tool" data-tool="clear">Clear</button>' +
+      '<button type="button" class="tool done" data-tool="done">Done</button>';
+    document.body.appendChild(bar);
+
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.color) {
+        tool.color = b.dataset.color; tool.erase = false;
+        bar.querySelectorAll('.swatch').forEach(function (s) { s.setAttribute('aria-pressed', String(s === b)); });
+        bar.querySelector('[data-tool="erase"]').setAttribute('aria-pressed', 'false');
+      } else if (b.dataset.tool === 'erase') {
+        tool.erase = b.getAttribute('aria-pressed') !== 'true';
+        b.setAttribute('aria-pressed', String(tool.erase));
+        bar.querySelectorAll('.swatch').forEach(function (s) { s.setAttribute('aria-pressed', String(!tool.erase && s.dataset.color === tool.color)); });
+      } else if (b.dataset.tool === 'clear') {
+        ctx.clearRect(0, 0, cv.width, cv.height);
+      } else if (b.dataset.tool === 'done') {
+        set(false); btn.focus();
+      }
+    });
+
+    cv.addEventListener('pointerdown', function (e) {
+      if (e.button !== 0) return;
+      drawing = true; last = pos(e); mid = last;
+      cv.setPointerCapture(e.pointerId);
+      // A single click leaves a dot.
+      ctx.globalCompositeOperation = tool.erase ? 'destination-out' : 'source-over';
+      ctx.fillStyle = tool.color;
+      ctx.beginPath(); ctx.arc(last.x, last.y, (tool.erase ? 12 : 1.4) * dpr, 0, Math.PI * 2); ctx.fill();
+    });
+    cv.addEventListener('pointermove', function (e) {
+      if (!drawing) return;
+      var p = pos(e), m = { x: (last.x + p.x) / 2, y: (last.y + p.y) / 2 };
+      var pressure = e.pointerType === 'pen' && e.pressure ? 0.5 + e.pressure : 1;
+      ctx.globalCompositeOperation = tool.erase ? 'destination-out' : 'source-over';
+      ctx.strokeStyle = tool.color;
+      ctx.lineWidth = (tool.erase ? 24 : 2.6 * pressure) * dpr;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(mid.x, mid.y); ctx.quadraticCurveTo(last.x, last.y, m.x, m.y); ctx.stroke();
+      last = p; mid = m;
+    });
+    function end() { drawing = false; }
+    cv.addEventListener('pointerup', end);
+    cv.addEventListener('pointercancel', end);
+    window.addEventListener('resize', function () { if (cv) fit(); });
+  }
+
+
+  function set(state) {
+    on = state;
+    if (on && !cv) build();
+    // Turning drawing mode off hides the sketch (fades out); turning it back on brings it back.
+    // Only the Clear button actually erases it.
+    if (on) { cv.classList.remove('fading'); fit(); }
+    if (!on && cv) cv.classList.add('fading');
+    document.documentElement.classList.toggle('drawing', on);
+    btn.setAttribute('aria-pressed', String(on));
+    btn.querySelector('.cmd').textContent = on ? 'drawing' : 'draw';
+    if (bar) bar.hidden = !on;
+  }
+  btn.addEventListener('click', function () { set(!on); });
+  document.addEventListener('keydown', function (e) { if (on && e.key === 'Escape') set(false); });
+})();
+
+// Zoom into projects: remember where the clicked project sits on screen, so the next page
+// can zoom in from that spot (read by the inline pagereveal script in each page's <head>).
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="projects/"]');
+  if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
+  var card = a.closest('.card');
+  if (card && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) card.classList.add('zoom-src');
+  var box = (a.closest('.card') || a).getBoundingClientRect();
+  var x = (box.left + box.width / 2) / window.innerWidth * 100;
+  var y = (box.top + box.height / 2) / window.innerHeight * 100;
+  try { sessionStorage.setItem('zoom', JSON.stringify({ x: Math.round(x * 10) / 10, y: Math.round(y * 10) / 10 })); } catch (_) {}
+});
+// If the user comes back with the Back button, don't leave a card stuck in its zoomed state.
+window.addEventListener('pageshow', function () { document.querySelectorAll('.zoom-src').forEach(function (c) { c.classList.remove('zoom-src'); }); });

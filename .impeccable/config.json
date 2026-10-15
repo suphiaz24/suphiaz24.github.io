@@ -1,0 +1,28 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "space grotesk",
+        "createdAt": "2026-10-14T05:04:03.767Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "space grotesk",
+        "createdAt": "2026-10-14T05:04:03.962Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "ibm plex serif",
+        "createdAt": "2026-10-14T05:15:53.668Z"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "space mono",
+        "createdAt": "2026-10-14T15:54:28.286Z"
+      }
+    ]
+  }
+}

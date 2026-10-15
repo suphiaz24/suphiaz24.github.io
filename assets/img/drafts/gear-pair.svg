@@ -7,5 +7,5 @@
   <circle cx="222" cy="120" r="42" stroke-dasharray="3 5" stroke-width="1"/>
   <circle cx="222" cy="120" r="10" />
   <path d="M24 120H280M110 34V206M222 66V174" stroke-dasharray="14 4 2 4" stroke-width="1"/>
-  <text x="166" y="238" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">z1 20 Â· z2 12 Â· m 3.5 Â· i = 1.67</text>
+  <text x="166" y="238" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">z1 20 · z2 12 · m 3.5 · i = 1.67</text>
 </svg>

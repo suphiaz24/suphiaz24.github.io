@@ -8,5 +8,5 @@
   <g transform="rotate(-24 95 100)"><path d="M95 89H160A11 11 0 0 1 160 111H95"/><path d="M95 89H30A11 11 0 0 0 30 111H95" stroke-dasharray="4 4" stroke-width="1"/></g>
   <circle cx="124" cy="87" r="2.5"/><circle cx="142" cy="79" r="2.5"/>
   <path d="M200 140C228 156 232 176 262 184M196 144C222 160 226 182 256 190M192 148C216 164 220 188 250 196" stroke-width="1"/>
-  <text x="130" y="202" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">SG90 Â· 9 g Â· 1.8 kgÂ·cm</text>
+  <text x="130" y="202" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">SG90 · 9 g · 1.8 kg·cm</text>
 </svg>

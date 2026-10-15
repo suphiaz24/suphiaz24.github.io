@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flapping-wing drive: first motion study · Suphia Zhang</title>
+  <meta name="description" content="I assembled the crank, gear, and linkage in Fusion 360 and ran a motion study to check the joint range before anything gets fabricated.">
+  <meta name="theme-color" content="#ffffff">
+  <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(!e.viewTransition||location.pathname.indexOf("projects/")<0)return;var z=null;try{z=JSON.parse(sessionStorage.getItem("zoom"));sessionStorage.removeItem("zoom")}catch(_){}var s=document.documentElement.style;s.setProperty("--zx",(z?z.x:50)+"%");s.setProperty("--zy",(z?z.y:50)+"%");e.viewTransition.types.add("zoom")})</script>
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../../assets/fonts/space-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script src="../../assets/js/main.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="../../">SUPHIA ZHANG <span>· Mechanical</span></a>
+    <nav class="nav hang" aria-label="Primary">
+      <a class="sign" href="../../#projects"><span class="plate">Projects</span></a>
+      <a class="sign" href="../../#side-projects"><span class="plate">Side<span class="xl"> projects</span></span></a>
+      <a class="sign" href="../../#experience"><span class="plate">Experience</span></a>
+      <a class="sign" href="../../#writing" aria-current="page"><span class="plate">Writing</span></a>
+      <a class="sign" href="../about/index.html"><span class="plate">About</span></a>
+      <a class="sign sign-go" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><span class="plate">Resume</span></a>
+    </nav>
+    <div class="draw-ctl"><button type="button" class="draw-btn" aria-pressed="false" aria-label="Drawing mode"><span class="pwr" aria-hidden="true">✎</span> <span class="cmd">draw</span><span class="cur" aria-hidden="true"></span></button></div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <p class="crumb"><a href="../../#writing">Writing</a> › LOG-01</p>
+
+  <div class="product">
+    <aside class="side" aria-label="Build logs">
+      <h2>Build logs</h2>
+      <nav class="toc">
+        <div class="toc-proj">
+          <div class="toc-row"><a href="foot-sensor-sim-to-hardware.html">Foot sensor: simulation first, then hardware</a><button type="button" class="toc-tog" aria-expanded="false" aria-controls="toc-foot-sensor-sim-to-hardware" aria-label="Sections"></button></div>
+          <ul id="toc-foot-sensor-sim-to-hardware" hidden><li><a href="foot-sensor-sim-to-hardware.html#simulation">Simulating the inputs</a></li><li><a href="foot-sensor-sim-to-hardware.html#wiring">First wiring</a></li><li><a href="foot-sensor-sim-to-hardware.html#hardware">Hardware test</a></li><li><a href="foot-sensor-sim-to-hardware.html#related">Related project</a></li></ul>
+        </div>
+        <div class="toc-proj">
+          <div class="toc-row"><a href="flapping-wing-first-motion-study.html" aria-current="page">Flapping-wing drive: first motion study</a><button type="button" class="toc-tog" aria-expanded="true" aria-controls="toc-flapping-wing-first-motion-study" aria-label="Sections"></button></div>
+          <ul id="toc-flapping-wing-first-motion-study"><li><a href="#assembly">The assembly</a></li><li><a href="#motion-study">Motion study</a></li><li><a href="#related">Related project</a></li></ul>
+        </div>
+      </nav>
+    </aside>
+
+    <article class="log">
+      <header class="product-head">
+        <h1>Flapping-wing drive: first motion study</h1>
+        <p class="sub"><span class="pn">LOG-01</span> · <span class="mono">17 Sep 2026</span> · Build log · <a href="../projects/flapping-wing-vehicle.html">Flapping-Wing Aerial-Aquatic Vehicle</a></p>
+      </header>
+
+      <p class="log-summary">I assembled the crank, gear, and linkage in Fusion 360 and ran a motion study to check the joint range before anything gets fabricated.</p>
+
+      <section class="log-step" id="assembly" aria-labelledby="assembly-h">
+        <div class="log-text">
+          <h2 id="assembly-h" class="subhead">The assembly</h2>
+          <p>The lab is reproducing MIT’s FAAV, a roughly 300 g diving-bird robot that both swims and flies. My piece is the wing drive: a crank driving a gear and linkage. I built it as a simulation assembly in Fusion 360, defining the mates and joint constraints.</p>
+        </div>
+        <figure class="fig"><img src="../../assets/media/faav-wing-iso.jpg" alt="Isometric CAD view of the crank, gear and linkage wing drive" loading="lazy" width="960" height="720"><figcaption><b>Fig. 1</b>Crank, gear, and linkage assembly.</figcaption></figure>
+      </section>
+
+      <section class="log-step" id="motion-study" aria-labelledby="motion-study-h">
+        <div class="log-text">
+          <h2 id="motion-study-h" class="subhead">Motion study</h2>
+          <p>A motion study cycles the joints so I can check the range of motion of the wing drive before anything is fabricated.</p>
+        </div>
+        <figure class="fig"><video controls muted playsinline preload="none" poster="../../assets/media/faav-wing-assembly-poster.jpg"><source src="../../assets/media/faav-wing-assembly.mp4" type="video/mp4"></video><figcaption><b>Fig. 2</b>Motion study of the assembly.</figcaption></figure>
+      </section>
+
+      <section class="specs" id="related" aria-labelledby="related-h">
+        <h2 id="related-h">Related project</h2>
+        <ul class="related">
+          <li><a href="../projects/flapping-wing-vehicle.html"><span class="pn">BFL-01</span> Flapping-Wing Aerial-Aquatic Vehicle →</a></li>
+        </ul>
+      </section>
+
+      <nav class="next" aria-label="More build logs">
+        <a href="foot-sensor-sim-to-hardware.html">← LOG-02: newer</a>
+        <a href="../../#writing">All build logs →</a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="colophon" id="contact">
+  <div class="wrap">
+    <dl class="author">
+      <dt>Author</dt><dd>Suphia Zhang, B.S. Mechanical Engineering ’29, Minor in Aerospace Engineering</dd>
+      <dt>Affiliations</dt><dd>Team Bootleg (NHRL) · <a href="https://cornellphysicalintelligence.com/" target="_blank" rel="noopener noreferrer">CUPI</a> · <a href="https://sites.google.com/cornell.edu/sunnyjsh" target="_blank" rel="noopener noreferrer">Bio-Inspired Fluid Lab</a> · <a href="https://asme.mae.cornell.edu/" target="_blank" rel="noopener noreferrer">ASME</a></dd>
+      <dt>Contact</dt><dd class="data"><a href="mailto:zhangsiya24@gmail.com">zhangsiya24@gmail.com</a> <button type="button" class="copy-email" data-copy="zhangsiya24@gmail.com" aria-label="Copy email address"><span>copy</span></button> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359" target="_blank" rel="noopener noreferrer">LinkedIn</a></dd>
+    </dl>
+    <div class="order">
+      <details class="resume-menu">
+        <summary class="btn"><video class="btn-video" muted loop playsinline preload="auto" aria-hidden="true"><source src="../../assets/media/resume-bg.mp4" type="video/mp4"></video><span class="btn-label">Resume</span> <span class="caret" aria-hidden="true"></span></summary>
+        <ul class="resume-list">
+          <li><a href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><strong>Mechanical Engineering</strong><span>Primary</span></a></li>
+          <li><a href="../../assets/SZhang_Resume_Manufacturing_Engineering.pdf" target="_blank" rel="noopener"><strong>Manufacturing Engineering</strong></a></li>
+          <li><a href="../../assets/SZhang_Resume_Testing_Engineering.pdf" target="_blank" rel="noopener"><strong>Testing Engineering</strong></a></li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

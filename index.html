@@ -9,9 +9,9 @@
   <meta property="og:description" content="Mechanical engineering student at Cornell. I design, build, and test robots.">
   <meta property="og:image" content="https://suphiaz24.github.io/assets/media/cupi-foot-sensor-wiring.jpg">
   <meta name="theme-color" content="#ffffff">
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(!e.viewTransition||location.pathname.indexOf("projects/")<0)return;var z=null;try{z=JSON.parse(sessionStorage.getItem("zoom"));sessionStorage.removeItem("zoom")}catch(_){}var s=document.documentElement.style;s.setProperty("--zx",(z?z.x:50)+"%");s.setProperty("--zy",(z?z.y:50)+"%");e.viewTransition.types.add("zoom")})</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/archivo-wdth-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/space-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/main.css">
   <script src="assets/js/main.js" defer></script>
 </head>
@@ -22,83 +22,78 @@
   <div class="wrap">
     <a class="brand" href="./">SUPHIA ZHANG <span>· Mechanical</span></a>
     <nav class="nav hang" aria-label="Primary">
-      <span class="beam" aria-hidden="true"></span>
-      <a class="sign" href="#projects"><span class="cable" aria-hidden="true"></span><span class="plate">Projects</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="#side-projects"><span class="cable" aria-hidden="true"></span><span class="plate">Side<span class="xl"> projects</span></span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="#experience"><span class="cable" aria-hidden="true"></span><span class="plate">Experience</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="#writing"><span class="cable" aria-hidden="true"></span><span class="plate">Writing</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="#about"><span class="cable" aria-hidden="true"></span><span class="plate">About</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign sign-go" href="assets/SZhang_Resume_Mechanical_Engineering.pdf"><span class="cable" aria-hidden="true"></span><span class="plate">Resume</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="#projects"><span class="plate">Projects</span></a>
+      <a class="sign" href="#side-projects"><span class="plate">Side<span class="xl"> projects</span></span></a>
+      <a class="sign" href="#experience"><span class="plate">Experience</span></a>
+      <a class="sign" href="#writing"><span class="plate">Writing</span></a>
+      <a class="sign" href="pages/about/index.html"><span class="plate">About</span></a>
+      <a class="sign sign-go" href="assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><span class="plate">Resume</span></a>
     </nav>
-    <div class="statics-ctl">
-      <button type="button" class="forces-btn" aria-pressed="false">Show forces</button>
-      <label class="load" hidden>Sign mass <input type="range" min="0.1" max="2" step="0.1" value="0.4"> <output>0.4 kg</output></label>
-    </div>
+    <div class="draw-ctl"><button type="button" class="draw-btn" aria-pressed="false" aria-label="Drawing mode"><span class="pwr" aria-hidden="true">✎</span> <span class="cmd">draw</span><span class="cur" aria-hidden="true"></span></button></div>
   </div>
 </header>
 
 <main id="main">
   <section class="intro wrap" aria-labelledby="name">
     <div class="intro-grid">
+      <div class="intro-main">
       <h1 id="name">Suphia Zhang</h1>
-      <p class="lede">I’m a mechanical engineering student at Cornell with a minor in aerospace engineering. I lead mechanical design for our NHRL combat robotics team, design hexapod legs and tactile foot sensors with Cornell Physical Intelligence, and I’m helping build a flapping-wing robot that can both swim and fly in the Bio-Inspired Fluid Lab. I like owning the whole loop: sketching, CAD, machining, testing, and redesigning.</p>
+      <p class="lede">I’m a mechanical engineering student at Cornell with a minor in aerospace engineering. I lead mechanical design for Bootleg, a 4-person combat robotics side project, design hexapod legs and tactile foot sensors with Cornell Physical Intelligence, and I’m helping build a flapping-wing robot that can both swim and fly in the Bio-Inspired Fluid Lab. I like owning the whole loop: sketching, CAD, machining, testing, and redesigning.</p>
+      <p class="more"><a href="pages/about/index.html">More about me →</a></p>
       <div class="order">
-        <a class="btn" href="assets/SZhang_Resume_Mechanical_Engineering.pdf">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
-          Download resume (PDF)
-        </a>
-        <p class="also">Also tailored for:
-          <a href="assets/SZhang_Resume_Manufacturing_Engineering.pdf">Manufacturing</a> ·
-          <a href="assets/SZhang_Resume_Testing_Engineering.pdf">Testing</a>
-        </p>
+        <details class="resume-menu">
+        <summary class="btn"><video class="btn-video" muted loop playsinline preload="auto" aria-hidden="true"><source src="assets/media/resume-bg.mp4" type="video/mp4"></video><span class="btn-label">Resume</span> <span class="caret" aria-hidden="true"></span></summary>
+        <ul class="resume-list">
+          <li><a href="assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><strong>Mechanical Engineering</strong><span>Primary</span></a></li>
+          <li><a href="assets/SZhang_Resume_Manufacturing_Engineering.pdf" target="_blank" rel="noopener"><strong>Manufacturing Engineering</strong></a></li>
+          <li><a href="assets/SZhang_Resume_Testing_Engineering.pdf" target="_blank" rel="noopener"><strong>Testing Engineering</strong></a></li>
+        </ul>
+      </details>
       </div>
+      </div>
+      <figure class="frame portrait-frame">
+        <!-- Portrait: upload your photo as assets/media/portrait.jpg, then replace the .pending div below with:
+             <img src="assets/media/portrait.jpg" alt="Suphia Zhang" width="800" height="1000"> -->
+        <div class="pending" role="img" aria-label="Portrait coming soon"><div><b>PORTRAIT</b><span>Photo coming</span></div></div>
+        <figcaption><span class="pn">SZ-00</span> Suphia Zhang · Mechanical Engineering ’29</figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="wrap section" id="projects" aria-labelledby="projects-h" style="padding-top:0">
     <div class="section-head">
       <h2 id="projects-h">Projects</h2>
-      <span class="count" data-count>4 items</span>
+      <span class="count" data-count>3 items</span>
       <div class="filter" role="group" aria-label="Filter projects by category">
         <button type="button" aria-pressed="true" data-filter="all">All</button>
         <button type="button" aria-pressed="false" data-filter="robotics">Robotics &amp; Mechanisms</button>
         <button type="button" aria-pressed="false" data-filter="sensors">Sensors &amp; Electronics</button>
-        <button type="button" aria-pressed="false" data-filter="fabrication">Fabrication</button>
         <button type="button" aria-pressed="false" data-filter="aero">Aero &amp; Fluids</button>
       </div>
     </div>
 
-    <ul class="cards">
+    <ul class="cards track" id="project-track">
+      <li data-cat="aero robotics">
+        <a class="card" href="pages/projects/flapping-wing-vehicle.html">
+          <div class="card-art"><img src="assets/media/faav-wing-iso.jpg" alt="Isometric CAD view of the crank, gear and linkage wing drive" loading="lazy" width="960" height="720"></div>
+          <div class="card-body">
+            <h3>Flapping-Wing Aerial-Aquatic Vehicle</h3>
+            <p>Wing mechanism work on a ~300 g diving-bird robot that swims and flies, modeled on MIT’s FAAV. I built a simulation assembly of the crank, gear, and linkage drive to check its range of motion before fabrication.</p>
+            <span class="tags" aria-label="Tools"><span>Fusion 360</span><span>Motion study</span><span>Kinematics</span></span>
+            <span class="meta"><span><span class="pn">BFL-01</span> Bio-Inspired Fluid Lab</span><span class="mono">2026–</span></span>
+            <span class="card-more">Full project →</span>
+          </div>
+        </a>
+      </li>
       <li data-cat="sensors robotics">
         <a class="card" href="pages/projects/tactile-foot-sensor.html">
           <div class="card-art"><img src="assets/media/cupi-foot-sensor-wiring.jpg" alt="Prototype wiring: a RedBoard, breadboard, two load cells and force-sensitive resistors" loading="lazy" width="1200" height="1600" style="object-position:center 45%"></div>
           <div class="card-body">
             <h3>Tactile Foot Sensor</h3>
-            <p>Velostat taxel array in a TPU foot, streaming pressure and tilt in real time.</p>
-            <span class="specline">Velostat · TPU · Arduino</span>
+            <p>A Velostat taxel-array foot sensor in a 3D-printed TPU housing for the Symbiote hexapod. Four pressure inputs stream to an Arduino, and a Python script plots a live pressure heatmap with centre of pressure and foot tilt.</p>
+            <span class="tags" aria-label="Tools"><span>Velostat</span><span>TPU</span><span>Arduino C++</span><span>Python</span><span>MuJoCo</span></span>
             <span class="meta"><span><span class="pn">CUPI-02</span> CUPI · Design team</span><span class="mono">2026–</span></span>
-          </div>
-        </a>
-      </li>
-      <li data-cat="aero robotics">
-        <a class="card" href="pages/projects/flapping-wing-vehicle.html">
-          <div class="card-art"><img src="assets/media/faav-wing-assembly-poster.jpg" alt="CAD motion study of a crank, gear and linkage assembly" loading="lazy" width="1280" height="800"></div>
-          <div class="card-body">
-            <h3>Flapping-Wing Aerial-Aquatic Vehicle</h3>
-            <p>Wing mechanism for a ~300 g diving-bird robot that swims and flies.</p>
-            <span class="specline">~300 g · swims and flies</span>
-            <span class="meta"><span><span class="pn">BFL-01</span> Bio-Inspired Fluid Lab</span><span class="mono">2026–</span></span>
-          </div>
-        </a>
-      </li>
-      <li data-cat="robotics fabrication">
-        <a class="card" href="pages/projects/beetleweight-combat-robot.html">
-          <div class="card-art"><div class="pending" role="img" aria-label="Photo coming soon"><div><b>NHRL-01</b><span>Photo coming</span></div></div></div>
-          <div class="card-body">
-            <h3>3 lb Beetleweight Combat Robot</h3>
-            <p>Sketch to full CAD in 6 weeks, 1 oz under the limit, 4 matches without structural failure.</p>
-            <span class="specline">3 lb · CF + machined · 4 matches</span>
-            <span class="meta"><span><span class="pn">NHRL-01</span> NHRL · Mechanical design lead</span><span class="mono">2025–</span></span>
+            <span class="card-more">Full project →</span>
           </div>
         </a>
       </li>
@@ -107,9 +102,10 @@
           <div class="card-art"><div class="pending" role="img" aria-label="Photo coming soon"><div><b>CUPI-01</b><span>Photo coming</span></div></div></div>
           <div class="card-body">
             <h3>Hexapod Leg Linkages</h3>
-            <p>Redesigned linkages for all six legs and a stronger carriage for heavier sensor payloads.</p>
-            <span class="specline">6 legs · Fusion 360</span>
+            <p>Redesigned the linkages for all six legs of the Symbiote hexapod and reinforced the leg carriage in Fusion 360 and Onshape, increasing range of motion and load capacity for heavier sensor payloads.</p>
+            <span class="tags" aria-label="Tools"><span>Fusion 360</span><span>Onshape</span><span>Linkages</span><span>Material analysis</span></span>
             <span class="meta"><span><span class="pn">CUPI-01</span> CUPI · Design team</span><span class="mono">2026–</span></span>
+            <span class="card-more">Full project →</span>
           </div>
         </a>
       </li>
@@ -119,15 +115,18 @@
 
   <section class="wrap section" id="side-projects" aria-labelledby="side-h">
     <div class="section-head"><h2 id="side-h">Side projects</h2><span class="count">Outside teams and classes</span></div>
-    <ul class="cards side-cards">
+    <ul class="cards side-cards track" id="side-track">
       <li>
-        <div class="card card-empty">
-          <div class="card-art"><div class="pending"><div><b>SP-01</b><span>On the bench</span></div></div></div>
+        <a class="card" href="pages/side-projects/nibble-newton.html">
+          <div class="card-art"><div class="pending" role="img" aria-label="Photo coming soon"><div><b>NHRL-01</b><span>Photo coming</span></div></div></div>
           <div class="card-body">
-            <h3>First side build</h3>
-            <p>Random creations and experiments I make for fun. First entries coming soon.</p>
+            <h3>Nibble Newton</h3>
+            <p>A 3 lb beetleweight combat robot built by my team, Bootleg, for NHRL. Hand sketches to full CAD in 6 weeks, 1 oz under the weight limit; the machined parts and carbon fiber layups survived 4 matches without structural failure.</p>
+            <span class="tags" aria-label="Tools"><span>Onshape</span><span>Machining</span><span>CF layup</span><span>Prototyping</span></span>
+            <span class="meta"><span><span class="pn">NHRL-01</span> Team Bootleg · NHRL</span><span class="mono">2025–</span></span>
+            <span class="card-more">Full project →</span>
           </div>
-        </div>
+        </a>
       </li>
     </ul>
   </section>
@@ -135,120 +134,44 @@
 
   <section class="wrap section" id="experience" aria-labelledby="experience-h">
     <div class="section-head"><h2 id="experience-h">Experience</h2></div>
-    <!-- Each role is a <details> row. To add a photo, replace a .pending slot with:
-         <figure class="fig"><img src="assets/media/your-photo.jpg" alt="What it shows" loading="lazy"><figcaption>Caption</figcaption></figure> -->
     <div class="xp">
       <div class="xp-labels" aria-hidden="true"><span>Role</span><span>Organization</span><span>Location</span><span>Dates</span></div>
-
-      <details class="xp-item">
-        <summary>
-          <span class="xp-role"><strong>Mechanical Design Lead</strong><span class="sub">Led a 4-person team’s 3 lb beetleweight build: CAD, machined parts, carbon fiber layups.</span></span>
-          <span class="xp-org">NHRL Combat Robotics Team</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Nov 2025 – present</span>
-          <span class="xp-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="xp-body">
-          <ul>
-            <li>Led mechanical design for a 4-person team building a 3 lb beetleweight combat robot, taking it from hand sketches to a full OnShape CAD model in 6 weeks and meeting the 3 lb weight limit with 1 oz to spare.</li>
-            <li>Iterated on the design through physical prototypes, testing each subsystem before committing to final hardware for the competition build.</li>
-            <li>Fabricated custom machined parts and carbon fiber composite layups and assembled all subsystems to tight tolerances; the robot survived 4 competition matches without structural failure.</li>
-          </ul>
-          <div class="xp-media">
-            <div class="pending"><div><b>NHRL</b><span>Photo slot</span></div></div>
-            <div class="pending"><div><b>NHRL</b><span>Photo slot</span></div></div>
-          </div>
-          <p class="xp-links">Project: <a href="pages/projects/beetleweight-combat-robot.html">3 lb Beetleweight Combat Robot →</a></p>
-        </div>
-      </details>
-
-      <details class="xp-item">
-        <summary>
-          <span class="xp-role"><strong>Mechanical Design Team Member</strong><span class="sub">Hexapod legs and tactile foot sensing for Symbiote, a UAV + hexapod system.</span></span>
-          <span class="xp-org">Cornell University Physical Intelligence</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Mar 2026 – present</span>
-          <span class="xp-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="xp-body">
-          <ul>
-            <li>Designed hexapod leg and tactile foot-sensing subsystems for Symbiote, a bio-inspired multi-robot system pairing an autonomous UAV quadcopter with a hexapod ground robot for coordinated terrain surveying.</li>
-            <li>Redesigned linkages for all 6 hexapod legs and reinforced the leg carriage in Fusion 360 through iterative CAD and material analysis, increasing range of motion and load capacity for heavier sensor payloads.</li>
-            <li>Designed, built, and tested a Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing, validated with MuJoCo simulation and Arduino (C++)/Python scripts for real-time force visualization.</li>
-          </ul>
-          <div class="xp-media">
-            <figure class="fig"><img src="assets/media/cupi-foot-sensor-wiring.jpg" alt="Foot sensor prototype wiring: RedBoard, breadboard, HX711 amplifier, load cells and force-sensitive resistors" loading="lazy" width="1200" height="1600"><figcaption>Foot sensor prototype wiring.</figcaption></figure>
-            <figure class="fig"><img src="assets/media/cupi-foot-sensor-prototype-poster.jpg" alt="Live foot-pressure heatmap with centre of pressure and pitch and roll plot" loading="lazy"><figcaption>Live pressure heatmap and tilt estimate.</figcaption></figure>
-          </div>
-          <p class="xp-links">Projects: <a href="pages/projects/tactile-foot-sensor.html">Tactile Foot Sensor →</a> <a href="pages/projects/hexapod-leg-linkages.html">Hexapod Leg Linkages →</a></p>
-        </div>
-      </details>
-
-      <details class="xp-item">
-        <summary>
-          <span class="xp-role"><strong>Undergraduate Researcher</strong><span class="sub">Flapping-wing aerial-aquatic vehicle, advised by Dr. Sunghwan Jung.</span></span>
-          <span class="xp-org">Bio-Inspired Fluid Lab</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Sep 2026 – present</span>
-          <span class="xp-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="xp-body">
-          <ul>
-            <li>Developing a flapping-wing aerial-aquatic vehicle modeled on MIT’s FAAV, a ~300 g diving-bird-inspired robot that both swims and flies, within the lab’s bird design subgroup.</li>
-            <li>Built a simulation assembly of the flapping-wing mechanism, defining mates and joint constraints to model wing kinematics and verify range of motion before fabrication.</li>
-          </ul>
-          <div class="xp-media">
-            <figure class="fig"><img src="assets/media/faav-wing-assembly-poster.jpg" alt="CAD motion study of the crank, gear and linkage wing drive" loading="lazy" width="1280" height="800"><figcaption>Wing drive motion study.</figcaption></figure>
-            <div class="pending"><div><b>BFL</b><span>Photo slot</span></div></div>
-          </div>
-          <p class="xp-links">Project: <a href="pages/projects/flapping-wing-vehicle.html">Flapping-Wing Aerial-Aquatic Vehicle →</a></p>
-        </div>
-      </details>
-
-      <details class="xp-item">
-        <summary>
-          <span class="xp-role"><strong>Corporate Committee Member</strong><span class="sub">Employer outreach and events for 200+ Cornell ME students.</span></span>
-          <span class="xp-org">ASME, Cornell University</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Dec 2025 – present</span>
-          <span class="xp-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="xp-body">
-          <ul>
-            <li>Conduct employer outreach and compile company dossiers to co-organize networking sessions, workshops, and speaker panels for 200+ Cornell ME students.</li>
-          </ul>
-          <div class="xp-media">
-            <div class="pending"><div><b>ASME</b><span>Photo slot</span></div></div>
-          </div>
-        </div>
-      </details>
-
-      <details class="xp-item">
-        <summary>
-          <span class="xp-role"><strong>Line Cook / Cashier / Staff</strong><span class="sub">Diagnosed and repaired commercial kitchen equipment; onboarded 3 delivery platforms.</span></span>
-          <span class="xp-org">Double Dragon Restaurant</span><span class="xp-loc">Pawtucket, RI</span><span class="xp-date mono">2015 – Aug 2026</span>
-          <span class="xp-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="xp-body">
-          <ul>
-            <li>Worked 60-hour weeks during academic breaks, diagnosing and repairing commercial kitchen equipment, including fryers, to minimize downtime during peak service.</li>
-            <li>Onboarded 3 delivery platforms (DoorDash, Grubhub, Uber Eats) in under a month, handling setup and merchant documentation; this brought in ~200 online orders per week while managing 30+ orders per shift.</li>
-          </ul>
-          <div class="xp-media">
-            <div class="pending"><div><b>DD</b><span>Photo slot</span></div></div>
-          </div>
-        </div>
-      </details>
+      <a class="xp-row" href="pages/experience/team-bootleg.html">
+        <span class="xp-role"><strong>Mechanical Design Lead</strong><span class="sub">Led a 4-person team’s 3 lb beetleweight build: CAD, machined parts, carbon fiber layups.</span></span>
+        <span class="xp-org">Team Bootleg (NHRL), side project</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Nov 2025 – present</span>
+        <span class="xp-go" aria-hidden="true">→</span>
+      </a>
+      <a class="xp-row" href="pages/experience/cornell-physical-intelligence.html">
+        <span class="xp-role"><strong>Mechanical Design Team Member</strong><span class="sub">Hexapod legs and tactile foot sensing for Symbiote, a UAV + hexapod system.</span></span>
+        <span class="xp-org">Cornell University Physical Intelligence (CUPI)</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Mar 2026 – present</span>
+        <span class="xp-go" aria-hidden="true">→</span>
+      </a>
+      <a class="xp-row" href="pages/experience/bio-inspired-fluid-lab.html">
+        <span class="xp-role"><strong>Undergraduate Researcher</strong><span class="sub">Flapping-wing aerial-aquatic vehicle, advised by Dr. Sunghwan Jung.</span></span>
+        <span class="xp-org">Bio-Inspired Fluid Lab</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Sep 2026 – present</span>
+        <span class="xp-go" aria-hidden="true">→</span>
+      </a>
+      <a class="xp-row" href="pages/experience/asme-cornell.html">
+        <span class="xp-role"><strong>Corporate Committee Member</strong><span class="sub">Employer outreach and events for 200+ Cornell ME students.</span></span>
+        <span class="xp-org">ASME, Cornell University</span><span class="xp-loc">Ithaca, NY</span><span class="xp-date mono">Dec 2025 – present</span>
+        <span class="xp-go" aria-hidden="true">→</span>
+      </a>
+      <a class="xp-row" href="pages/experience/double-dragon.html">
+        <span class="xp-role"><strong>Line Cook / Cashier / Staff</strong><span class="sub">Diagnosed and repaired commercial kitchen equipment; onboarded 3 delivery platforms.</span></span>
+        <span class="xp-org">Double Dragon Restaurant</span><span class="xp-loc">Pawtucket, RI</span><span class="xp-date mono">2015 – Aug 2026</span>
+        <span class="xp-go" aria-hidden="true">→</span>
+      </a>
     </div>
+
 
     <div class="table-scroll" style="margin-top:var(--s6)">
       <table class="spec stack-2">
-        <thead><tr><th scope="col">Education</th><th scope="col">Details</th><th scope="col">Dates</th></tr></thead>
+        <thead><tr><th scope="col">Capability</th><th scope="col">Tools and skills <span class="hint-inline">· click one to see where it was used</span></th></tr></thead>
         <tbody>
-          <tr><td><strong>Cornell University</strong><span class="sub">B.S. Mechanical Engineering, Minor in Aerospace Engineering</span></td><td>Meinig Family Cornell National Scholar · McMullen Scholarship Recipient · McMullen Dean’s Scholar (2025–26) · National First-Generation Recognition Program</td><td class="mono">Aug 2025 – May 2029</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="table-scroll" style="margin-top:var(--s6)">
-      <table class="spec stack-2">
-        <thead><tr><th scope="col">Capability</th><th scope="col">Tools and processes</th></tr></thead>
-        <tbody>
-          <tr><td><strong>CAD &amp; design</strong></td><td>OnShape, Fusion 360, GD&amp;T, simulation assemblies, design iteration &amp; validation</td></tr>
-          <tr><td><strong>Fabrication</strong></td><td>Machining, carbon fiber composite layup, 3D printing (PLA, TPU), soldering, prototyping, assembly</td></tr>
-          <tr><td><strong>Programming</strong></td><td>Python, MATLAB (Onramp certified), Arduino (C++), MuJoCo, LaTeX</td></tr>
+          <tr><td><strong>CAD &amp; design</strong></td><td><div class="skills"><details class="skill-menu"><summary class="skill">Onshape <span class="n">2</span></summary><ul class="skill-list"><li><a href="pages/side-projects/nibble-newton.html">Nibble Newton</a></li><li><a href="pages/projects/hexapod-leg-linkages.html">Hexapod Leg Linkages</a></li></ul></details><details class="skill-menu"><summary class="skill">Fusion 360 <span class="n">2</span></summary><ul class="skill-list"><li><a href="pages/projects/flapping-wing-vehicle.html">Flapping-Wing Vehicle</a></li><li><a href="pages/projects/hexapod-leg-linkages.html">Hexapod Leg Linkages</a></li></ul></details><span class="skill plain">GD&amp;T</span><a class="skill" href="pages/projects/flapping-wing-vehicle.html" title="Flapping-Wing Vehicle">Simulation assemblies</a><details class="skill-menu"><summary class="skill">Design iteration &amp; validation <span class="n">2</span></summary><ul class="skill-list"><li><a href="pages/side-projects/nibble-newton.html">Nibble Newton</a></li><li><a href="pages/projects/tactile-foot-sensor.html">Tactile Foot Sensor</a></li></ul></details></div></td></tr>
+          <tr><td><strong>Fabrication</strong></td><td><div class="skills"><a class="skill" href="pages/side-projects/nibble-newton.html" title="Nibble Newton">Machining</a><a class="skill" href="pages/side-projects/nibble-newton.html" title="Nibble Newton">Carbon fiber layup</a><a class="skill" href="pages/projects/tactile-foot-sensor.html" title="Tactile Foot Sensor">3D printing (PLA, TPU)</a><span class="skill plain">Soldering</span><details class="skill-menu"><summary class="skill">Prototyping <span class="n">2</span></summary><ul class="skill-list"><li><a href="pages/projects/tactile-foot-sensor.html">Tactile Foot Sensor</a></li><li><a href="pages/side-projects/nibble-newton.html">Nibble Newton</a></li></ul></details><a class="skill" href="pages/side-projects/nibble-newton.html" title="Nibble Newton">Assembly</a></div></td></tr>
+          <tr><td><strong>Programming</strong></td><td><div class="skills"><a class="skill" href="pages/projects/tactile-foot-sensor.html" title="Tactile Foot Sensor">Python</a><span class="skill plain">MATLAB (Onramp certified)</span><a class="skill" href="pages/projects/tactile-foot-sensor.html" title="Tactile Foot Sensor">Arduino (C++)</a><a class="skill" href="pages/projects/tactile-foot-sensor.html" title="Tactile Foot Sensor">MuJoCo</a><span class="skill plain">LaTeX</span></div></td></tr>
+          <tr><td><strong>Teamwork &amp; work</strong></td><td><div class="skills"><a class="skill" href="pages/experience/team-bootleg.html" title="Team Bootleg">Team leadership</a><a class="skill" href="pages/experience/asme-cornell.html" title="ASME, Cornell">Employer outreach &amp; events</a><a class="skill" href="pages/experience/double-dragon.html" title="Double Dragon Restaurant">Equipment diagnosis &amp; repair</a><a class="skill" href="pages/experience/double-dragon.html" title="Double Dragon Restaurant">Fast-paced, high-volume service</a><a class="skill" href="pages/experience/double-dragon.html" title="Double Dragon Restaurant">Vendor onboarding &amp; documentation</a><a class="skill" href="pages/experience/double-dragon.html" title="Double Dragon Restaurant">Customer service</a></div></td></tr>
           <tr><td><strong>Languages</strong></td><td>English and Fuzhounese (native), Mandarin and Spanish (conversational)</td></tr>
         </tbody>
       </table>
@@ -256,48 +179,54 @@
   </section>
 
   <section class="wrap section" id="writing" aria-labelledby="writing-h">
-    <div class="section-head"><h2 id="writing-h">Writing</h2></div>
-    <div class="empty"><strong>Build logs</strong>Notes on what worked, what broke, and why. First post coming soon.</div>
+    <div class="section-head"><h2 id="writing-h">Writing</h2><span class="count">Build logs</span></div>
+    <ul class="cards track writing-cards" id="writing-track">
+      <li>
+        <a class="card" href="pages/writing/foot-sensor-sim-to-hardware.html">
+          <div class="card-art"><img src="assets/media/cupi-foot-sensor-prototype-poster.jpg" alt="Simulated foot sensor inputs driving a live pressure heatmap" loading="lazy"></div>
+          <div class="card-body">
+            <span class="log-date"><span class="pn">LOG-02</span> <span class="mono">21 Sep 2026</span></span>
+            <h3>Foot sensor: simulation first, then hardware</h3>
+            <p>I proved out the foot sensor’s four pressure inputs in an Arduino simulation driving a live heatmap, then wired the first breadboard prototype and streamed real readings.</p>
+            <span class="meta"><span>Tactile Foot Sensor</span></span>
+            <span class="card-more">Read log →</span>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a class="card" href="pages/writing/flapping-wing-first-motion-study.html">
+          <div class="card-art"><img src="assets/media/faav-wing-iso.jpg" alt="Isometric CAD view of the crank, gear and linkage wing drive" loading="lazy" width="960" height="720"></div>
+          <div class="card-body">
+            <span class="log-date"><span class="pn">LOG-01</span> <span class="mono">17 Sep 2026</span></span>
+            <h3>Flapping-wing drive: first motion study</h3>
+            <p>I assembled the crank, gear, and linkage in Fusion 360 and ran a motion study to check the joint range before anything gets fabricated.</p>
+            <span class="meta"><span>Flapping-Wing Aerial-Aquatic Vehicle</span></span>
+            <span class="card-more">Read log →</span>
+          </div>
+        </a>
+      </li>
+    </ul>
   </section>
 
-  <section class="wrap section" id="about" aria-labelledby="about-h">
-    <div class="section-head"><h2 id="about-h">About me</h2><span class="count">Off the clock</span></div>
-    <div class="about">
-      <div class="about-text">
-        <p>I grew up in Pawtucket, Rhode Island, speaking Fuzhounese and English, and I’m the first in my family to go to college. Before I ever opened CAD, I was the one fixing the fryers and kitchen equipment at Double Dragon, and that’s still my favourite kind of problem: something’s broken, figure out why.</p>
-        <table class="spec facts">
-          <tbody>
-            <tr><th scope="row">Name</th><td>Suphia Zhang <span lang="zh-Hans">张思雅</span></td></tr>
-            <tr><th scope="row">Hometown</th><td>Pawtucket, Rhode Island</td></tr>
-            <tr><th scope="row">Languages</th><td>English, Fuzhounese, Mandarin, Spanish</td></tr>
-            <tr><th scope="row">Say hi</th><td class="data"><a href="mailto:sz744@cornell.edu">sz744@cornell.edu</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <!-- Portrait: save your photo as assets/media/portrait.jpg, then replace this .pending block with:
-           <figure class="fig portrait"><img src="assets/media/portrait.jpg" alt="Suphia Zhang" loading="lazy"></figure> -->
-      <div class="portrait pending" role="img" aria-label="Portrait coming soon"><div><b>PORTRAIT</b><span>Photo coming</span></div></div>
-    </div>
-  </section>
 </main>
 
 <footer class="colophon" id="contact">
   <div class="wrap">
     <dl class="author">
       <dt>Author</dt><dd>Suphia Zhang, B.S. Mechanical Engineering ’29, Minor in Aerospace Engineering</dd>
-      <dt>Affiliations</dt><dd>NHRL Combat Robotics · CUPI · Bio-Inspired Fluid Lab · ASME</dd>
-      <dt>Contact</dt><dd class="data"><a href="mailto:sz744@cornell.edu">sz744@cornell.edu</a> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359">LinkedIn</a></dd>
+      <dt>Affiliations</dt><dd>Team Bootleg (NHRL) · <a href="https://cornellphysicalintelligence.com/" target="_blank" rel="noopener noreferrer">CUPI</a> · <a href="https://sites.google.com/cornell.edu/sunnyjsh" target="_blank" rel="noopener noreferrer">Bio-Inspired Fluid Lab</a> · <a href="https://asme.mae.cornell.edu/" target="_blank" rel="noopener noreferrer">ASME</a></dd>
+      <dt>Contact</dt><dd class="data"><a href="mailto:zhangsiya24@gmail.com">zhangsiya24@gmail.com</a> <button type="button" class="copy-email" data-copy="zhangsiya24@gmail.com" aria-label="Copy email address"><span>copy</span></button> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359" target="_blank" rel="noopener noreferrer">LinkedIn</a></dd>
       <dt>Based in</dt><dd>Ithaca, New York</dd>
     </dl>
     <div class="order">
-      <a class="btn" href="assets/SZhang_Resume_Mechanical_Engineering.pdf">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
-        Download resume (PDF)
-      </a>
-      <p class="also">Also tailored for:
-        <a href="assets/SZhang_Resume_Manufacturing_Engineering.pdf">Manufacturing</a> ·
-        <a href="assets/SZhang_Resume_Testing_Engineering.pdf">Testing</a>
-      </p>
+      <details class="resume-menu">
+        <summary class="btn"><video class="btn-video" muted loop playsinline preload="auto" aria-hidden="true"><source src="assets/media/resume-bg.mp4" type="video/mp4"></video><span class="btn-label">Resume</span> <span class="caret" aria-hidden="true"></span></summary>
+        <ul class="resume-list">
+          <li><a href="assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><strong>Mechanical Engineering</strong><span>Primary</span></a></li>
+          <li><a href="assets/SZhang_Resume_Manufacturing_Engineering.pdf" target="_blank" rel="noopener"><strong>Manufacturing Engineering</strong></a></li>
+          <li><a href="assets/SZhang_Resume_Testing_Engineering.pdf" target="_blank" rel="noopener"><strong>Testing Engineering</strong></a></li>
+        </ul>
+      </details>
     </div>
   </div>
 </footer>

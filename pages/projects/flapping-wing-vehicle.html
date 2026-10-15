@@ -6,9 +6,9 @@
   <title>Flapping-Wing Aerial-Aquatic Vehicle · Suphia Zhang</title>
   <meta name="description" content="Wing mechanism work on a flapping-wing robot that both swims and flies, in Cornell's Bio-Inspired Fluid Lab.">
   <meta name="theme-color" content="#ffffff">
-  <script>document.documentElement.classList.add("js")</script>
+  <script>document.documentElement.classList.add("js");addEventListener("pagereveal",function(e){if(!e.viewTransition||location.pathname.indexOf("projects/")<0)return;var z=null;try{z=JSON.parse(sessionStorage.getItem("zoom"));sessionStorage.removeItem("zoom")}catch(_){}var s=document.documentElement.style;s.setProperty("--zx",(z?z.x:50)+"%");s.setProperty("--zy",(z?z.y:50)+"%");e.viewTransition.types.add("zoom")})</script>
   <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="../../assets/fonts/archivo-wdth-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/space-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/css/main.css">
   <script src="../../assets/js/main.js" defer></script>
   <script src="../../assets/js/fourbar.js" defer></script>
@@ -20,39 +20,36 @@
   <div class="wrap">
     <a class="brand" href="../../">SUPHIA ZHANG <span>· Mechanical</span></a>
     <nav class="nav hang" aria-label="Primary">
-      <span class="beam" aria-hidden="true"></span>
-      <a class="sign" href="../../#projects" aria-current="page"><span class="cable" aria-hidden="true"></span><span class="plate">Projects</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="../../#side-projects"><span class="cable" aria-hidden="true"></span><span class="plate">Side<span class="xl"> projects</span></span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="../../#experience"><span class="cable" aria-hidden="true"></span><span class="plate">Experience</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="../../#writing"><span class="cable" aria-hidden="true"></span><span class="plate">Writing</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign" href="../../#about"><span class="cable" aria-hidden="true"></span><span class="plate">About</span><span class="tension" aria-hidden="true"></span></a>
-      <a class="sign sign-go" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf"><span class="cable" aria-hidden="true"></span><span class="plate">Resume</span><span class="tension" aria-hidden="true"></span></a>
+      <a class="sign" href="../../#projects" aria-current="page"><span class="plate">Projects</span></a>
+      <a class="sign" href="../../#side-projects"><span class="plate">Side<span class="xl"> projects</span></span></a>
+      <a class="sign" href="../../#experience"><span class="plate">Experience</span></a>
+      <a class="sign" href="../../#writing"><span class="plate">Writing</span></a>
+      <a class="sign" href="../about/index.html"><span class="plate">About</span></a>
+      <a class="sign sign-go" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><span class="plate">Resume</span></a>
     </nav>
-    <div class="statics-ctl">
-      <button type="button" class="forces-btn" aria-pressed="false">Show forces</button>
-      <label class="load" hidden>Sign mass <input type="range" min="0.1" max="2" step="0.1" value="0.4"> <output>0.4 kg</output></label>
-    </div>
+    <div class="draw-ctl"><button type="button" class="draw-btn" aria-pressed="false" aria-label="Drawing mode"><span class="pwr" aria-hidden="true">✎</span> <span class="cmd">draw</span><span class="cur" aria-hidden="true"></span></button></div>
   </div>
 </header>
 
 <main id="main" class="wrap">
-  <p class="crumb"><a href="../../#projects">Projects</a> › <a href="../../?cat=aero#projects">Aero &amp; Fluids</a> › Flapping-Wing Vehicle</p>
+  <p class="crumb"><a href="../../#projects">Projects</a> › Flapping-Wing Vehicle</p>
 
   <div class="product">
-    <aside class="side" aria-label="Catalog">
+    <aside class="side" aria-label="Projects">
       <h2>Projects</h2>
-      <nav>
-        <a href="tactile-foot-sensor.html">Tactile Foot Sensor</a>
-        <a href="flapping-wing-vehicle.html" aria-current="page">Flapping-Wing Vehicle</a>
-        <a href="beetleweight-combat-robot.html">Beetleweight Combat Robot</a>
-        <a href="hexapod-leg-linkages.html">Hexapod Leg Linkages</a>
-      </nav>
-      <h2>Category</h2>
-      <nav>
-        <a href="../../?cat=robotics#projects">Robotics &amp; Mechanisms</a>
-        <a href="../../?cat=sensors#projects">Sensors &amp; Electronics</a>
-        <a href="../../?cat=fabrication#projects">Fabrication</a>
-        <a href="../../?cat=aero#projects">Aero &amp; Fluids</a>
+      <nav class="toc">
+        <div class="toc-proj">
+          <div class="toc-row"><a href="flapping-wing-vehicle.html" aria-current="page">Flapping-Wing Vehicle</a><button type="button" class="toc-tog" aria-expanded="true" aria-controls="toc-fwv" aria-label="Flapping-Wing Vehicle sections"></button></div>
+          <ul id="toc-fwv"><li><a href="#purpose">Purpose</a></li><li><a href="#build">How it’s built</a></li><li><a href="#specs">Specifications</a></li><li><a href="#figures">Figures</a></li><li><a href="#mechanism">Live mechanism</a></li></ul>
+        </div>
+        <div class="toc-proj">
+          <div class="toc-row"><a href="tactile-foot-sensor.html">Tactile Foot Sensor</a><button type="button" class="toc-tog" aria-expanded="false" aria-controls="toc-foot" aria-label="Tactile Foot Sensor sections"></button></div>
+          <ul id="toc-foot" hidden><li><a href="tactile-foot-sensor.html#purpose">Purpose</a></li><li><a href="tactile-foot-sensor.html#build">How it’s built</a></li><li><a href="tactile-foot-sensor.html#testing">Testing</a></li><li><a href="tactile-foot-sensor.html#specs">Specifications</a></li><li><a href="tactile-foot-sensor.html#figures">Figures</a></li></ul>
+        </div>
+        <div class="toc-proj">
+          <div class="toc-row"><a href="hexapod-leg-linkages.html">Hexapod Leg Linkages</a><button type="button" class="toc-tog" aria-expanded="false" aria-controls="toc-legs" aria-label="Hexapod Leg Linkages sections"></button></div>
+          <ul id="toc-legs" hidden><li><a href="hexapod-leg-linkages.html#purpose">Purpose</a></li><li><a href="hexapod-leg-linkages.html#design">Design</a></li><li><a href="hexapod-leg-linkages.html#specs">Specifications</a></li><li><a href="hexapod-leg-linkages.html#figures">Figures</a></li></ul>
+        </div>
       </nav>
     </aside>
 
@@ -60,29 +57,36 @@
       <header class="product-head">
         <h1>Flapping-Wing Aerial-Aquatic Vehicle</h1>
         <p class="sub"><span class="pn">BFL-01</span> · Bio-Inspired Fluid Lab · Undergraduate Researcher, advisor Dr. Sunghwan Jung · Sep 2026 – present</p>
+        <p class="fab"><b>Fabrication</b><span class="stage">Design stage</span><span>CAD simulation assembly before fabrication</span></p>
       </header>
 
       <div class="product-body">
         <div class="lead">
         <div class="desc">
-          <p>In the lab’s bird design subgroup, I’m helping develop a flapping-wing aerial-aquatic vehicle modeled on MIT’s FAAV: a roughly 300 g robot, inspired by diving birds, that can both swim and fly (<a href="https://news.mit.edu/2026/new-flapping-robot-swims-and-flies-like-diving-bird-0709">MIT News</a>).</p>
-          <p>I built a simulation assembly of the flapping-wing mechanism, a crank driving a gear and linkage, defining mates and joint constraints to model the wing kinematics and verify range of motion before anything is fabricated.</p>
+          <section id="purpose" aria-labelledby="purpose-h">
+            <h2 id="purpose-h" class="subhead">Purpose</h2>
+            <p>In the lab’s bird design subgroup, I’m helping develop a flapping-wing aerial-aquatic vehicle modeled on MIT’s FAAV: a roughly 300 g robot, inspired by diving birds, that can both swim and fly (<a href="https://news.mit.edu/2026/new-flapping-robot-swims-and-flies-like-diving-bird-0709" target="_blank" rel="noopener noreferrer">MIT News</a>).</p>
+          </section>
+          <section id="build" aria-labelledby="build-h">
+            <h2 id="build-h" class="subhead">How it’s built</h2>
+            <p>I built a Fusion 360 simulation assembly of the flapping-wing mechanism, a crank driving a gear and linkage, defining mates and joint constraints to model the wing kinematics and verify range of motion before anything is fabricated.</p>
+          </section>
         </div>
 
-      <section class="specs" aria-labelledby="spec-h">
+      <section class="specs" id="specs" aria-labelledby="spec-h">
         <h2 id="spec-h">Specifications</h2>
         <div class="table-scroll">
           <table class="spec labeled">
             <thead><tr><th scope="col">Part no.</th><th scope="col">Description</th><th scope="col">Process</th><th scope="col">Material</th><th scope="col">Status</th></tr></thead>
             <tbody>
-              <tr><td class="pn">BFL-01-A</td><td>Flapping-wing drive: crank, gear, linkage</td><td data-label="Process">CAD simulation assembly, motion study</td><td data-label="Material">—</td><td data-label="Status">In design</td></tr>
+              <tr><td class="pn">BFL-01-A</td><td>Flapping-wing drive: crank, gear, linkage</td><td data-label="Process">Fusion 360 simulation assembly, motion study</td><td data-label="Material">—</td><td data-label="Status">In design</td></tr>
               <tr><td class="pn">BFL-01-B</td><td>Full vehicle, ~300 g, swims and flies</td><td data-label="Process">Research build</td><td data-label="Material">—</td><td data-label="Status">In progress</td></tr>
             </tbody>
           </table>
         </div>
       </section>
         </div>
-        <div class="figs">
+        <div class="figs" id="figures">
           <figure class="fig">
             <video controls muted playsinline preload="none" poster="../../assets/media/faav-wing-assembly-poster.jpg">
               <source src="../../assets/media/faav-wing-assembly.mp4" type="video/mp4">
@@ -92,7 +96,7 @@
         </div>
       </div>
 
-      <section class="specs" aria-labelledby="mech-h">
+      <section class="specs" id="mechanism" aria-labelledby="mech-h">
         <h2 id="mech-h">Live mechanism: crank–rocker wing drive</h2>
         <div class="lab">
           <div class="lab-stage">
@@ -118,8 +122,8 @@
       </section>
 
       <nav class="next" aria-label="More projects">
-        <a href="tactile-foot-sensor.html">← Tactile Foot Sensor</a>
-        <a href="beetleweight-combat-robot.html">Next: Beetleweight Combat Robot →</a>
+        <a href="../../#projects">← All projects</a>
+        <a href="tactile-foot-sensor.html">Next: Tactile Foot Sensor →</a>
       </nav>
     </article>
   </div>
@@ -129,18 +133,18 @@
   <div class="wrap">
     <dl class="author">
       <dt>Author</dt><dd>Suphia Zhang, B.S. Mechanical Engineering ’29, Minor in Aerospace Engineering</dd>
-      <dt>Affiliations</dt><dd>NHRL Combat Robotics · CUPI · Bio-Inspired Fluid Lab · ASME</dd>
-      <dt>Contact</dt><dd class="data"><a href="mailto:sz744@cornell.edu">sz744@cornell.edu</a> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359">LinkedIn</a></dd>
+      <dt>Affiliations</dt><dd>Team Bootleg (NHRL) · <a href="https://cornellphysicalintelligence.com/" target="_blank" rel="noopener noreferrer">CUPI</a> · <a href="https://sites.google.com/cornell.edu/sunnyjsh" target="_blank" rel="noopener noreferrer">Bio-Inspired Fluid Lab</a> · <a href="https://asme.mae.cornell.edu/" target="_blank" rel="noopener noreferrer">ASME</a></dd>
+      <dt>Contact</dt><dd class="data"><a href="mailto:zhangsiya24@gmail.com">zhangsiya24@gmail.com</a> <button type="button" class="copy-email" data-copy="zhangsiya24@gmail.com" aria-label="Copy email address"><span>copy</span></button> · <a href="https://www.linkedin.com/in/suphia-zhang-46770b359" target="_blank" rel="noopener noreferrer">LinkedIn</a></dd>
     </dl>
     <div class="order">
-      <a class="btn" href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
-        Download resume (PDF)
-      </a>
-      <p class="also">Also tailored for:
-        <a href="../../assets/SZhang_Resume_Manufacturing_Engineering.pdf">Manufacturing</a> ·
-        <a href="../../assets/SZhang_Resume_Testing_Engineering.pdf">Testing</a>
-      </p>
+      <details class="resume-menu">
+        <summary class="btn"><video class="btn-video" muted loop playsinline preload="auto" aria-hidden="true"><source src="../../assets/media/resume-bg.mp4" type="video/mp4"></video><span class="btn-label">Resume</span> <span class="caret" aria-hidden="true"></span></summary>
+        <ul class="resume-list">
+          <li><a href="../../assets/SZhang_Resume_Mechanical_Engineering.pdf" target="_blank" rel="noopener"><strong>Mechanical Engineering</strong><span>Primary</span></a></li>
+          <li><a href="../../assets/SZhang_Resume_Manufacturing_Engineering.pdf" target="_blank" rel="noopener"><strong>Manufacturing Engineering</strong></a></li>
+          <li><a href="../../assets/SZhang_Resume_Testing_Engineering.pdf" target="_blank" rel="noopener"><strong>Testing Engineering</strong></a></li>
+        </ul>
+      </details>
     </div>
   </div>
 </footer>

@@ -10,5 +10,5 @@
   <circle cx="120" cy="230" r="9" />
   <path d="M117 221h6v-4h-6z"/>
   <path d="M50 230H190M120 160V292" stroke-dasharray="14 4 2 4" stroke-width="1"/>
-  <text x="120" y="312" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">e = 15 Â· rise = 30</text>
+  <text x="120" y="312" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">e = 15 · rise = 30</text>
 </svg>

@@ -9,6 +9,6 @@
   <circle cx="340" cy="100" r="36" />
   <circle cx="340" cy="100" r="20" />
   <path d="M357.3 90A20 20 0 1 1 350 82.7" stroke-width="1"/>
-  <text x="140" y="182" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">M10 Ã— 1.5 Ã— 60</text>
+  <text x="140" y="182" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">M10 × 1.5 × 60</text>
   <text x="340" y="182" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">NUT M10</text>
 </svg>

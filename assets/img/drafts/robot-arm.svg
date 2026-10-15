@@ -15,8 +15,8 @@
   <path d="M160 205A50 50 0 0 0 144.4 168.7" stroke-width="1"/>
   <path d="M200 110L238 70" stroke-dasharray="14 4 2 4" stroke-width="1"/>
   <path d="M227.5 81A40 40 0 0 1 239.2 117.8" stroke-width="1"/>
-  <text x="172" y="192" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">Î¸1</text>
-  <text x="252" y="98" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">Î¸2</text>
-  <text x="330" y="205" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="end">L1 130 Â· L2 100</text>
+  <text x="172" y="192" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">θ1</text>
+  <text x="252" y="98" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="middle">θ2</text>
+  <text x="330" y="205" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="end">L1 130 · L2 100</text>
   <text x="330" y="222" fill="#a2a29c" stroke="none" font-family="monospace" font-size="12" text-anchor="end">2-DOF ARM</text>
 </svg>
