@@ -73,6 +73,7 @@ Media:
 - `assets/media/cupi-foot-sensor-prototype.mp4` (0.9 MB, 45 s, 16:10): the CUPI foot sensor in a Wokwi Arduino simulation (four sensor inputs plus an HX711 load-cell amp) driving a live Python plot: a foot-pressure heatmap with center of pressure, and estimated pitch/roll over time. This is the strongest foot-sensor clip.
 - `assets/media/cupi-foot-sensor-demo.mp4` (6.6 MB, 65 s, vertical): a phone video of the real hardware's Arduino serial monitor streaming pitch, roll, pad compression, and raw FSR readings. The physical sensor is not visible in frame.
 - `assets/media/faav-wing-assembly.mp4` (0.6 MB, 9 s, 16:10): Bio-Inspired Fluid Lab Fusion 360 motion study of the flapping-wing crank–gear–linkage assembly, part of reproducing MIT's diving-bird flapping robot (https://news.mit.edu/2026/new-flapping-robot-swims-and-flies-like-diving-bird-0709).
+- `assets/media/faav-gear-assembly.mp4` (0.5 MB, 2.5 s loop, 8:7, no audio): later Fusion 360 motion study of the same project, with paired meshing gears, ball bearings, and a crank rod. Cropped from the user's screen recording of 2026-10-21.
 - Each video has a matching `-poster.jpg`. Videos are silent (audio stripped). The originals in `assets/` are source files and are not used by the site.
 
 Absences: no combat-robot or flapping-wing media yet, and no CAD renders. Do not fabricate results, metrics, employers, awards, or testimonials beyond the resume.
