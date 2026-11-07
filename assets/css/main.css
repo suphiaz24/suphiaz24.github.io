@@ -9,9 +9,9 @@
 
 :root {
   --paper: #ffffff;
-  --ink: #1a1a1a;
-  --ink-2: #3a3a38;
-  --muted: #5f5f5b;
+  --ink: #111111;
+  --ink-2: #262624;
+  --muted: #464643;
   --rule: #d9d9d6;
   --wash: #f4f4f2;
   --link: #1b5e9b;
@@ -948,3 +948,50 @@ a.skill:hover::after, a.skill:focus-visible::after { color: #fff; }
 @media (max-width: 900px) { .log-step { grid-template-columns: minmax(0, 1fr); gap: var(--s4); } }
 .card .log-date .mono { font-size: 12px; }
 .log-summary { border-left: 0; padding-left: 0; padding-block: var(--s4); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
+
+/* ---------- Load-cell comparison (tactile foot sensor) ---------- */
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lc { margin-top: var(--s7); }
+.lc .lab-stage.lc-stage { min-height: 0; touch-action: auto; padding: var(--s4) var(--s5) var(--s5); display: grid; gap: var(--s2); align-content: start; }
+.lc-stage > svg, .lc-chartwrap > svg { display: block; width: 100%; height: auto; }
+.lc-stage svg text { font-family: var(--sans); }
+.lc-stage svg text:not([fill]) { fill: var(--ink); }
+.lc-stage svg .tk { font: 400 11px var(--mono); fill: var(--muted); }
+.lc-stage svg .ax { font-size: 11px; fill: var(--ink-2); }
+.lc-stage svg .lbl { font-size: 10px; }
+.lc-stage svg .hd { font-size: 12px; font-weight: 600; }
+.lc-stage svg .st-ok { fill: var(--go); font-weight: 600; }
+.lc-stage svg .st-moving { fill: #8a5200; font-weight: 600; }
+.lc-stage svg .st-bad { fill: #b3261e; font-weight: 600; }
+.lc-title { font: 600 12px var(--sans); font-stretch: 78%; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); margin-top: var(--s3); }
+.lc-title:first-child { margin-top: 0; }
+.lc-key { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); font-size: 13px; color: var(--ink-2); }
+.lc-key li { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; }
+.sw.a { background: #1b5e9b; }
+.sw.b { background: #b4530f; }
+.lc-key .sw { margin-right: 0; }
+.lc-chartwrap { position: relative; }
+.lc-tip { position: absolute; pointer-events: none; z-index: 2; min-width: 160px; background: #fff; border: 1px solid var(--ink); padding: 8px 10px; font-size: 12px; box-shadow: 0 4px 14px rgba(0, 0, 0, .18); display: grid; gap: 2px; }
+.lc-tip[hidden] { display: none; }
+.lc-tip span { display: flex; justify-content: space-between; gap: var(--s3); color: var(--ink-2); }
+.lc-tip i { font: 400 12px var(--mono); font-style: normal; color: var(--ink); }
+.lc-tip .a::before, .lc-tip .b::before { content: ""; width: 8px; height: 8px; align-self: center; margin-right: -6px; }
+.lc-tip .a::before { background: #1b5e9b; }
+.lc-tip .b::before { background: #b4530f; }
+.ctl select { grid-column: 1 / -1; width: 100%; font: 400 14px var(--sans); padding: 6px 8px; border: 1px solid #767672; background: #fff; color: var(--ink); border-radius: 0; }
+.ctl select:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.readout td.st-ok { color: var(--go); }
+.readout td.st-moving { color: #8a5200; }
+.readout td.st-bad { color: #b3261e; }
+.lc .table-scroll { margin-top: var(--s5); }
+.lc-table tbody th { font: 500 15px var(--sans); font-stretch: 85%; letter-spacing: 0; text-transform: none; white-space: normal; color: var(--ink-2); border-bottom: 1px solid var(--rule); padding: 10px; vertical-align: top; }
+.lc-table td.win { font-weight: 600; }
+.lc-table td.win::after { content: " ✓"; color: var(--go); }
+.lc-asm { margin-top: var(--s4); border: 1px solid var(--rule); background: #fff; padding: var(--s3) var(--s4); }
+.lc-asm > summary { cursor: pointer; font: 600 13px var(--sans); font-stretch: 80%; letter-spacing: .05em; text-transform: uppercase; }
+.lc-asm > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.lc-asm-ctl { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--s4) var(--s5); margin: var(--s4) 0; }
+@media (max-width: 640px) { .lc .lab-stage.lc-stage { padding: var(--s3); } }
+.fig-wide { grid-column: 1 / -1; }
+.fig-wide img { aspect-ratio: auto; max-height: none; height: auto; object-fit: contain; background: #fff; }

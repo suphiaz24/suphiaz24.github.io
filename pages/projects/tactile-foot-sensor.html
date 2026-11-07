@@ -11,6 +11,7 @@
   <link rel="preload" href="../../assets/fonts/space-grotesk-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/css/main.css">
   <script src="../../assets/js/main.js" defer></script>
+  <script src="../../assets/js/loadcell.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -43,7 +44,7 @@
         </div>
         <div class="toc-proj">
           <div class="toc-row"><a href="tactile-foot-sensor.html" aria-current="page">Tactile Foot Sensor</a><button type="button" class="toc-tog" aria-expanded="true" aria-controls="toc-foot" aria-label="Tactile Foot Sensor sections"></button></div>
-          <ul id="toc-foot"><li><a href="#purpose">Purpose</a></li><li><a href="#build">How it’s built</a></li><li><a href="#testing">Testing</a></li><li><a href="#specs">Specifications</a></li><li><a href="#figures">Figures</a></li></ul>
+          <ul id="toc-foot"><li><a href="#purpose">Purpose</a></li><li><a href="#build">How it’s built</a></li><li><a href="#testing">Testing</a></li><li><a href="#specs">Specifications</a></li><li><a href="#figures">Figures</a></li><li><a href="#loadcell">Load-cell comparison</a></li></ul>
         </div>
       </nav>
     </aside>
@@ -52,7 +53,7 @@
       <header class="product-head">
         <h1>Tactile Foot Sensor</h1>
         <p class="sub"><span class="pn">CUPI-02</span> · For the Symbiote hexapod · Cornell University Physical Intelligence · Mechanical Design Team · Mar 2026 – present</p>
-        <p class="fab"><b>Fabrication</b><span>FDM 3D printing (TPU)</span><span>Breadboard prototyping &amp; wiring</span><span>Sensor assembly</span></p>
+        <p class="fab"><b>Fabrication</b><span>FDM 3D printing (TPU, Nylon)</span><span>Breadboard prototyping &amp; wiring</span><span>Sensor assembly</span></p>
       </header>
 
       <div class="product-body">
@@ -65,10 +66,14 @@
           <section id="build" aria-labelledby="build-h">
             <h2 id="build-h" class="subhead">How it’s built</h2>
             <p>I designed, built, and tested a Velostat taxel-array tactile foot sensor in a 3D-printed TPU housing. Four pressure inputs feed an Arduino, and a Python script turns the stream into a live foot-pressure heatmap with the centre of pressure and an estimate of the foot’s pitch and roll.</p>
+            <p>For the current foot, the team chose Nylon for the whole printed foot instead of TPU. Nylon is tough: it bends instead of cracking on hard touchdowns and drops. TPU is too rubbery for the socket, which has to hold the load cell rigidly and clamp onto the tibia. In TPU the cell would tilt, the rubber would soak up force, and the clamp screws would loosen. The socket isn’t stiffness-critical (an Oct 19 study found it fine in every filament tested), so Nylon’s lower stiffness only matters for the puck plate.</p>
+            <p>The sole is VytaFlex 60 instead of silicone. A silicone sole grips well on clean indoor floors but does poorly on outdoor terrain, while VytaFlex 60 works on most terrain.</p>
           </section>
           <section id="testing" aria-labelledby="testing-h">
             <h2 id="testing-h" class="subhead">Testing</h2>
             <p>The design was validated in MuJoCo simulation and with Arduino (C++) and Python scripts for real-time force visualization and terrain-adaptive feedback.</p>
+            <p>A finite element model of the puck plate compared filaments and thicknesses under a worst-case load: 16 N pushed up through a Ø10 mm rock at the centre of the sole, landing between all four pucks (Fig. 5). A 3 mm PETG plate bows 31 µm and 14% of each puck face lifts off its FSR. Every 5 mm plate keeps full contact: PETG bends 11.4 µm, PETG-CF 8.3 µm and Nylon 16 µm.</p>
+            <p>The load cell reading doesn’t change with plate material, because all the force runs in series from the sole through the pucks and FSRs into the load cell. Even the largest bend stays far below the 1.2 mm gap to the carrier. The real risk with a thin plate is repeatability: a partly lifted puck can land a little differently every step. The takeaway is that thickness matters more than filament. PETG-CF gives the most even pressure, and Nylon is the most flexible option. The team kept Nylon for the plate anyway, for the toughness above. The study recommends a 5 mm plate, where Nylon still keeps full puck contact; the final thickness isn’t decided yet. Nylon-CF, the stiffest of the eight filaments studied, is the fallback if more margin is needed.</p>
           </section>
         </div>
 
@@ -82,6 +87,8 @@
               <tr><td class="pn">CUPI-02-B</td><td>Foot housing</td><td data-label="Process">3D printing</td><td data-label="Material">TPU</td><td data-label="Status">Built</td></tr>
               <tr><td class="pn">CUPI-02-C</td><td>Firmware and telemetry</td><td data-label="Process">Arduino (C++)</td><td data-label="Material">—</td><td data-label="Status">Working</td></tr>
               <tr><td class="pn">CUPI-02-D</td><td>Pressure heatmap and tilt estimate</td><td data-label="Process">Python, MuJoCo simulation</td><td data-label="Material">—</td><td data-label="Status">Working</td></tr>
+              <tr><td class="pn">CUPI-02-E</td><td>Load-cell foot: socket, carrier, puck plate</td><td data-label="Process">FDM 3D printing</td><td data-label="Material">Nylon</td><td data-label="Status">CAD</td></tr>
+              <tr><td class="pn">CUPI-02-F</td><td>Sole</td><td data-label="Process">—</td><td data-label="Material">VytaFlex 60</td><td data-label="Status">CAD</td></tr>
             </tbody>
           </table>
         </div>
@@ -123,8 +130,87 @@
             </video>
             <figcaption><b>Fig. 3</b>Hardware test: the serial monitor streaming pitch, roll, pad compression, and raw FSR readings.</figcaption>
           </figure>
+          <figure class="fig callout-fig">
+            <div class="stage">
+              <img src="../../assets/media/cupi-foot-assembly-cad.jpg" alt="CAD render of the foot assembly: a dark socket with a clamped cup for the leg on top, an orange carrier, a yellow puck plate, and a black sole at the bottom" loading="lazy" width="510" height="850">
+              <button type="button" class="pin" style="left:28%;top:53%" aria-expanded="false" aria-controls="pin-6" aria-label="Part 1: socket">1</button>
+              <div class="pin-note" id="pin-6" hidden><b>Socket (Nylon)</b>Holds the load cell rigidly and clamps onto the tibia. Nylon for toughness on hard touchdowns.</div>
+              <button type="button" class="pin" style="left:29%;top:70%" aria-expanded="false" aria-controls="pin-7" aria-label="Part 2: carrier">2</button>
+              <div class="pin-note" id="pin-7" hidden><b>Carrier</b>Sits below the load cell and moves with the foot.</div>
+              <button type="button" class="pin" style="left:76%;top:86%" aria-expanded="false" aria-controls="pin-8" aria-label="Part 3: puck plate">3</button>
+              <div class="pin-note" id="pin-8" hidden><b>Puck plate</b>Pucks press on the force-sensitive resistors.</div>
+              <button type="button" class="pin" style="left:15%;top:93%" aria-expanded="false" aria-controls="pin-9" aria-label="Part 4: VytaFlex 60 sole">4</button>
+              <div class="pin-note" id="pin-9" hidden><b>VytaFlex 60 sole</b>Chosen over silicone, which grips clean indoor floors but does poorly outdoors.</div>
+            </div>
+            <figcaption><b>Fig. 4</b>Foot assembly in CAD. Tap a number to see each part.</figcaption>
+            <ol class="legend">
+              <li>Socket (Nylon)</li>
+              <li>Carrier</li>
+              <li>Puck plate</li>
+              <li>VytaFlex 60 sole</li>
+            </ol>
+          </figure>
+          <figure class="fig fig-wide">
+            <img src="../../assets/media/cupi-puck-plate-fea.png" alt="Finite element results for four puck plates under a 16 N load at the centre: PETG 3 mm bows 31 micrometres and 14% of the puck faces lift off their FSRs; PETG 5 mm bows 11.4, PETG-CF 5 mm 8.3, and Nylon 5 mm 16 micrometres, all with full puck contact" loading="lazy" width="1749" height="1147">
+            <figcaption><b>Fig. 5</b>Puck plate FEA. Top: how far each plate bows under a rock at the centre. Bottom: pressure on each puck face, with gray where the puck lifts off its FSR. The model treats the print as solid material and the FSRs as springs. At the final 7.47 kg robot weight (about 24 N per foot in a tripod gait), every bend scales up about 1.5×, with the same ranking.</figcaption>
+          </figure>
         </div>
       </div>
+
+      <section class="specs lc" id="loadcell" aria-labelledby="lc-h">
+        <h2 id="lc-h">Load-cell comparison: two half-bridges vs ATO button</h2>
+        <div class="lab">
+          <div class="lab-stage lc-stage">
+            <p class="lc-title">Cross-section, movement exaggerated 400×</p>
+            <svg id="lc-stack" viewBox="0 0 440 250" role="img" aria-label="Animated cross-section of both foot stacks. The fill in each load cell shows how much of its rating it is using."></svg>
+            <p class="lc-title">Force on the foot during one step</p>
+            <ul class="lc-key">
+              <li><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#3a3a38" stroke-width="2" stroke-dasharray="4 3"/></svg>True force</li>
+              <li><span class="sw a"></span>Two 50 kg half-bridges</li>
+              <li><span class="sw b"></span>ATO 20 kg button</li>
+            </ul>
+            <div class="lc-chartwrap">
+              <svg id="lc-chart" viewBox="0 0 680 300" role="img" aria-label="Force over one step: the true force and each load cell's sampled reading"></svg>
+              <div class="lc-tip" id="lc-tip" hidden></div>
+            </div>
+            <p class="lc-title">Reading error (reading minus true force)</p>
+            <svg id="lc-err" viewBox="0 0 680 150" role="img" aria-label="Reading error over one step for each load cell"></svg>
+          </div>
+          <div class="lab-panel">
+            <p class="hint">One footstep on the MKII hexapod, run through both sensor stacks. Change the robot, gait and amplifier to see what each load cell reads.</p>
+            <label class="ctl">Robot mass <output id="lc-mass-out">7.47 kg</output><input id="lc-mass" type="range" min="3" max="12" step="0.01" value="7.47"></label>
+            <label class="ctl">Gait (feet on ground)<select id="lc-gait"><option value="3" selected>Tripod (3 down)</option><option value="4">Ripple (4 down)</option><option value="5">Wave (5 down)</option><option value="6">Standing still (6 down)</option></select></label>
+            <label class="ctl">Mid-stance slip + re-contact spike<select id="lc-spike"><option value="0">None</option><option value="3">Firmware capped (3×)</option><option value="6.8" selected>Uncapped (6.8×)</option></select></label>
+            <label class="ctl">Amplifier<select id="lc-amp"><option value="hx10">HX711, 10 samples/s</option><option value="hx80" selected>HX711, 80 samples/s (RATE pin)</option><option value="nau320">NAU7802, 320 samples/s</option></select></label>
+            <label class="ctl">Load off-center <output id="lc-cop-out">0 mm</output><input id="lc-cop" type="range" min="0" max="11" step="0.5" value="0"></label>
+            <label class="ctl">Playback speed <output id="lc-spd-out">0.25×</output><input id="lc-spd" type="range" min="0.05" max="1" step="0.05" value="0.25"></label>
+            <table class="readout">
+              <tr><th scope="row">Standing load per foot</th><td id="lc-standing">—</td></tr>
+              <tr><th scope="row">Two-cell peak</th><td id="lc-peak-A">—</td></tr>
+              <tr><th scope="row">ATO peak</th><td id="lc-peak-B">—</td></tr>
+            </table>
+            <div class="lab-actions"><button type="button" id="lc-play" aria-pressed="true">Pause</button></div>
+            <p class="lab-note">The two-cell stack barely uses its range (small signal). The ATO button uses more of its range (twice the signal) but gets close to its limit on an uncapped spike. Try the “Firmware capped” spike and the 10 samples/s amplifier.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="spec lc-table">
+            <thead><tr><th scope="col"><span class="visually-hidden">Measure</span></th><th scope="col"><span class="sw a"></span>Two 50 kg half-bridges</th><th scope="col"><span class="sw b"></span>ATO 20 kg button</th></tr></thead>
+            <tbody id="lc-table"></tbody>
+          </table>
+        </div>
+        <details class="lc-asm">
+          <summary>Assumptions</summary>
+          <div class="lc-asm-ctl">
+            <label class="ctl">ATO output <output id="lc-atoMv-out">1.0 mV/V</output><input id="lc-atoMv" type="range" min="0.5" max="2.2" step="0.1" value="1.0"></label>
+            <label class="ctl">Accuracy, two-cell <output id="lc-nlA-out">±0.5% FS</output><input id="lc-nlA" type="range" min="0.1" max="2" step="0.1" value="0.5"></label>
+            <label class="ctl">Accuracy, ATO <output id="lc-nlB-out">±0.5% FS</output><input id="lc-nlB" type="range" min="0.1" max="2" step="0.1" value="0.5"></label>
+            <label class="ctl">Off-center error, two-cell <output id="lc-ocA-out">2.0% / 10 mm</output><input id="lc-ocA" type="range" min="0" max="5" step="0.5" value="2"></label>
+            <label class="ctl">Off-center error, ATO + dome <output id="lc-ocB-out">0.5% / 10 mm</output><input id="lc-ocB" type="range" min="0" max="5" step="0.5" value="0.5"></label>
+          </div>
+          <p class="lab-note">Two half-bridges: 50 kg (490 N) rating, sensitivity 0.0125 mV/N from the foot manual (0.2 mV at 16 N); safe overload assumed 150%. ATO button: 20 kg (196 N) rating, 5 V excitation, safe overload 150% (typical for button cells), body Ø20 × 12 mm from the ATO drawing. Amplifier noise (input-referred, rms): HX711 about 50 nV at 10 samples/s and 90 nV at 80 samples/s (datasheet); NAU7802 at 320 samples/s assumed 200 nV. Footstep shape: touchdown overshoot 2.7× standing, optional slip and re-contact spike. Accuracy and off-center errors are illustrative defaults, not measured.</p>
+        </details>
+      </section>
 
       <nav class="next" aria-label="More projects">
         <a href="flapping-wing-vehicle.html">← Flapping-Wing Vehicle</a>
